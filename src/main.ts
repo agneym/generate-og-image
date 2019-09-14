@@ -16,7 +16,9 @@ async function run() {
     process.exit(78);
   }
 
-  generateImage();
+  const image = generateImage();
+
+  
 }
 
 run();
