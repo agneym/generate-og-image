@@ -8,3 +8,6 @@ inputs:
 runs:
   using: 'node12'
   main: 'dist/index.js'
+  name: generate-meta-images
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
