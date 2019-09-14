@@ -30,4 +30,6 @@ COPY src/ /usr/local/src/generate-og-image/src/
 COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
 COPY dist/ /usr/local/src/generate-og-image/dist/
 
-ENTRYPOINT ["/usr/local/dist/index.js"]
+RUN chmod +x /usr/local/src/generate-og-image/dist/index.js
+
+ENTRYPOINT ["/usr/local/src/generate-og-image/dist/index.js"]

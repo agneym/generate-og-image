@@ -4,7 +4,7 @@ const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"];
 
 if (!REPO_DIRECTORY) {
   console.log("There is no GITHUB_WORKSPACE environment variable");
-  // process.exit(1);
+  process.exit(1);
 }
 
 export {

@@ -1,6 +1,7 @@
 import * as core from '@actions/core';
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
+import generateImage from './generate-image';
 
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
@@ -14,6 +15,8 @@ async function run() {
     console.log("This action only runs for pushes to PRs");
     process.exit(78);
   }
+
+  generateImage();
 }
 
 run();
