@@ -1,6 +1,6 @@
-import Octokit from "@octokit/rest";
+import { GitHub } from "@actions/github";
 import { GITHUB_TOKEN } from "./constants";
 
-const octokit = new Octokit({ auth: `token ${GITHUB_TOKEN}` });
+const octokit = new GitHub(GITHUB_TOKEN as string);
 
 export default octokit;
