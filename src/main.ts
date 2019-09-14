@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as core from '@actions/core';
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
