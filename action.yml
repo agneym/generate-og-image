@@ -2,5 +2,5 @@ name: 'Your name here'
 description: 'Provide a description here'
 author: 'Agney'
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
