@@ -14,13 +14,6 @@ async function run() {
     console.log("This action only runs for pushes to PRs");
     process.exit(78);
   }
-  
-  try {
-    const myInput = core.getInput('myInput');
-    core.debug(`Hello ${myInput}`);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
 }
 
 run();

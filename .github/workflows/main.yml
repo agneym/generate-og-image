@@ -2,16 +2,13 @@ name: "Generate OG Images"
 on: pull_request
 
 jobs:
-  hello_world_job:
+  generate_og_job:
     runs-on: ubuntu-latest
     name: Generate OG Images
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Hello world action step
+      - name: Generate Image
         uses: ./ # Uses an action in the root directory
-        id: hello
-        with:
-          who-to-greet: 'Mona the Octocat'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
