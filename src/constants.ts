@@ -7,7 +7,13 @@ if (!REPO_DIRECTORY) {
   process.exit(1);
 }
 
+const COMMITTER = {
+  name: "OG Bot",
+  email: "hello@agney.dev"
+};
+
 export {
+  COMMITTER,
   GITHUB_TOKEN,
   GITHUB_EVENT_NAME,
   REPO_DIRECTORY,
