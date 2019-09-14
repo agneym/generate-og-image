@@ -12,3 +12,5 @@ jobs:
         id: hello
         with:
           who-to-greet: 'Mona the Octocat'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
