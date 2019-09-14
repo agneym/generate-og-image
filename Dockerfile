@@ -16,5 +16,18 @@ RUN  apt-get update \
 # When installing Puppeteer through npm, instruct it to not download Chromium.
 # Puppeteer will need to be launched with:
 #   browser.launch({ executablePath: 'google-chrome-unstable' })
-# This is done by default in @ianwalter/bff.
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
+
+RUN mkdir -p /usr/local/src/generate-og-image
+WORKDIR /usr/local/src/generate-og-image
+
+COPY package.json package-lock.json /usr/local/src/generate-og-image/
+RUN npm ci
+
+# copy in src
+COPY LICENSE README.md /usr/local/src/generate-og-image/
+COPY src/ /usr/local/src/generate-og-image/src/
+COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
+COPY dist/ /usr/local/src/generate-og-image/dist/
+
+ENTRYPOINT ["/usr/local/dist/index.js"]
