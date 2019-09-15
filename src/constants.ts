@@ -2,7 +2,6 @@ const GITHUB_TOKEN = process.env["GITHUB_TOKEN"];
 const GITHUB_EVENT_NAME = process.env["GITHUB_EVENT_NAME"];
 const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"];
 const GITHUB_REPOSITORY = process.env["GITHUB_REPOSITORY"];
-const GITHUB_REF = process.env["GITHUB_REF"];
 const GITHUB_EVENT_PATH = process.env["GITHUB_EVENT_PATH"];
 const GITHUB_HEAD_REF = process.env["GITHUB_HEAD_REF"];
 
@@ -11,7 +10,7 @@ if (!REPO_DIRECTORY) {
   process.exit(1);
 }
 
-if(!GITHUB_REPOSITORY) {
+if (!GITHUB_REPOSITORY) {
   console.log("Can't find github repository");
   process.exit(1);
 }
@@ -27,9 +26,8 @@ export {
   COMMITTER,
   GITHUB_TOKEN,
   GITHUB_EVENT_NAME,
-  GITHUB_REF,
   GITHUB_EVENT_PATH,
   REPO_DIRECTORY,
   USER_REPO,
   GITHUB_HEAD_REF
-}
+};
