@@ -20,6 +20,11 @@ function generateHtml(prop: Partial<IProps>) {
     </head>
     <body>
       <og-image-element .subtitle=${prop.subtitle || ""}>
+        ${
+          prop.imageUrl
+            ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
+            : ``
+        }
         <div slot="title">${prop.title}</div>
       </og-image-element>
     </body>

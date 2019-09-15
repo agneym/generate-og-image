@@ -6,6 +6,8 @@ export interface IFileProps {
 export interface IProps {
   title: string;
   subtitle: string;
+  filename: string;
+  imageUrl: string;
 }
 
 export interface IFrontMatter {
