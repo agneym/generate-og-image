@@ -11,6 +11,12 @@ import {
 import octokit from "./github-api";
 import { IFrontMatter, IFileProps } from "./types";
 
+function getFileName(filename: string) {
+  const { length: len, [len - 1]: last } = filename.split("/");
+  const name = last.replace(/.mdx?/, "");
+  return name;
+}
+
 function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
   return files.map(file => {
     const filename = file.filename;
@@ -21,15 +27,11 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
     const { attributes } = fm<IFrontMatter>(contents);
     return {
       filename: getFileName(filename),
-      attributes: Object.keys(attributes).length ? attributes.ogImage : {}
+      attributes: Object.keys(attributes).length
+        ? { ...(attributes.ogImage || {}) }
+        : {}
     };
   });
-}
-
-function getFileName(filename: string) {
-  const { length: len, [len - 1]: last } = filename.split("/");
-  const name = last.replace(/.mdx?/, "");
-  return name;
 }
 
 async function findFile() {
@@ -44,7 +46,7 @@ async function findFile() {
   const markdownFiles = filesList.filter(file => {
     return FORMATS.some(format => file.filename.endsWith(format));
   });
-  const frontmatterAttributes = await getAttributes(markdownFiles);
+  const frontmatterAttributes = getAttributes(markdownFiles);
 
   return frontmatterAttributes.filter(
     frontmatterAttribute => frontmatterAttribute.attributes
