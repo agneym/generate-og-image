@@ -24,11 +24,12 @@ WORKDIR /usr/local/src/generate-og-image
 COPY package.json package-lock.json /usr/local/src/generate-og-image/
 RUN npm ci
 
+RUN npm run build-release
+
 # copy in src
 COPY LICENSE README.md /usr/local/src/generate-og-image/
 COPY src/ /usr/local/src/generate-og-image/src/
 COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
-COPY dist/ /usr/local/src/generate-og-image/dist/
 
 RUN chmod +x /usr/local/src/generate-og-image/dist/index.js
 
