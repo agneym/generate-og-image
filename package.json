@@ -23,6 +23,7 @@
   "dependencies": {
     "@actions/core": "^1.0.0",
     "@actions/github": "^1.1.0",
+    "@zeit/ncc": "^0.20.5",
     "marked": "^0.7.0",
     "puppeteer-core": "^1.20.0"
   },
@@ -30,7 +31,6 @@
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
     "@types/puppeteer": "^1.19.1",
-    "@zeit/ncc": "^0.20.5",
     "husky": "^3.0.5",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",
