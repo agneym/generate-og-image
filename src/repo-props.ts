@@ -6,9 +6,13 @@ import { getInput } from "@actions/core";
 async function getRepoProps() {
   const assetPath = getInput(`path`);
   const commitMsg = getInput(`commitMsg`);
+  const backgroundColor = getInput(`background-color`);
+  const fontColor = getInput(`font-color`);
   return {
     assetPath,
-    commitMsg
+    commitMsg,
+    backgroundColor,
+    fontColor
   };
 }
 

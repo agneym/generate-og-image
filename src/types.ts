@@ -8,6 +8,8 @@ export interface IProps {
   subtitle: string;
   filename: string;
   imageUrl: string;
+  backgroundColor: string;
+  fontColor: string;
 }
 
 export interface IFrontMatter {

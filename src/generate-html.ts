@@ -14,6 +14,8 @@ function generateHtml(prop: Partial<IProps>) {
         }
         og-image-element {
           --heading-font: 'Aleo', serif;
+          --background-color: ${prop.backgroundColor};
+          --font-color: ${prop.fontColor};
         }
       </style>
       <script type="module" rel="preload" src="https://unpkg.com/@agney/og-image-element@0.1.0"></script>

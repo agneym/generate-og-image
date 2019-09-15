@@ -11,6 +11,12 @@ inputs:
   commitMsg:
     description: "commit message to be shown when adding image"
     default: "just some wholesome content. yo all!"
+  background-color:
+    description: "background color for image"
+    default: "#ffffff"
+  font-color:
+    description: "font color for image"
+    default: "#000000"
 runs:
   using: "docker"
   image: "Dockerfile"
