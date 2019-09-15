@@ -7,9 +7,9 @@ import { USER_REPO, GITHUB_REF, COMMITTER } from "./constants";
 async function commitFile(content: string) {
   const [owner, repo] = USER_REPO;
   const event = await eventDetails;
-  const branch = (event as any).pull_request.head.ref;
   console.log(event);
   debug(`Event trigger $event`);
+  const branch = (event as any).pull_request.head.ref;
   
   try {
     await octokit.repos.createOrUpdateFile({
