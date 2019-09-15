@@ -1,4 +1,9 @@
+name: "Generate OG Image"
+description: "Helps users generate a OG Image from frontmatter"
 author: "Agney"
+branding:
+  icon: "share-2"
+  color: "orange"
 runs:
   using: "docker"
   image: "Dockerfile"
