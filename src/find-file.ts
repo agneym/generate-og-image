@@ -10,9 +10,10 @@ import {
   REPO_DIRECTORY
 } from "./constants";
 import octokit from "./github-api";
+import { IFrontMatter } from "./types";
 
-function getAttributes(files: PullsListFilesResponseItem[]) {
-  return files.map(async file => {
+async function getAttributes(files: PullsListFilesResponseItem[]) {
+  return await files.map(async file => {
     const filename = file.filename;
     const repoDirectory = REPO_DIRECTORY as string;
     const contents = await fs.readFile(`${repoDirectory}/${filename}`, {
@@ -20,7 +21,7 @@ function getAttributes(files: PullsListFilesResponseItem[]) {
     });
     debug(`${repoDirectory}/${filename}`);
     debug(contents);
-    const { attributes } = fm(contents);
+    const { attributes } = fm<IFrontMatter>(contents);
     return attributes;
   });
 }
@@ -37,7 +38,11 @@ async function findFile() {
   const markdownFiles = filesList.filter(file => {
     return FORMATS.some(format => file.filename.endsWith(format));
   });
-  const frontmatter = getAttributes(markdownFiles);
-  debug(JSON.stringify(frontmatter));
+  const frontmatterAttributes = await getAttributes(markdownFiles);
+  debug(JSON.stringify(frontmatterAttributes));
+
+  frontmatterAttributes.filter(
+    frontmatterAttribute => frontmatterAttribute.ogImage
+  );
 }
 export default findFile;
