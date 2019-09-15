@@ -12395,6 +12395,8 @@ const GITHUB_REF = process.env["GITHUB_REF"];
 exports.GITHUB_REF = GITHUB_REF;
 const GITHUB_EVENT_PATH = process.env["GITHUB_EVENT_PATH"];
 exports.GITHUB_EVENT_PATH = GITHUB_EVENT_PATH;
+const GITHUB_HEAD_REF = process.env["GITHUB_HEAD_REF"];
+exports.GITHUB_HEAD_REF = GITHUB_HEAD_REF;
 if (!REPO_DIRECTORY) {
     console.log("There is no GITHUB_WORKSPACE environment variable");
     process.exit(1);
@@ -22657,12 +22659,12 @@ function commitFile(content) {
     return __awaiter(this, void 0, void 0, function* () {
         const [owner, repo] = constants_1.USER_REPO;
         const event = yield github_event_1.default;
-        const branch = event.pull_request.head.ref;
         console.log(event);
-        core_1.debug(`Event trigger $event`);
+        core_1.debug(`Head ref, ${constants_1.GITHUB_HEAD_REF}`);
+        core_1.debug(`Event trigger ${event}`);
         try {
             yield github_api_1.default.repos.createOrUpdateFile(Object.assign({ owner,
-                repo, path: "dist/image.jpg", branch: constants_1.GITHUB_REF, message: "Just some wholesome content, yo all", content }, constants_1.COMMITTER));
+                repo, path: "dist/image.jpg", branch: constants_1.GITHUB_HEAD_REF, message: "Just some wholesome content, yo all", content }, constants_1.COMMITTER));
         }
         catch (err) {
             core_1.error(`Adding a commit to branch ${constants_1.GITHUB_REF} failed with ${err}`);

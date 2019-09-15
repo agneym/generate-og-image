@@ -10,7 +10,6 @@ async function commitFile(content: string) {
   console.log(event);
   debug(`Head ref, ${GITHUB_HEAD_REF}`);
   debug(`Event trigger ${event}`);
-  const branch = (event as any).pull_request.head.ref;
   
   try {
     await octokit.repos.createOrUpdateFile({
