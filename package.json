@@ -3,9 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "description": "JavaScript template action",
-  "main": "lib/main.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
+    "build-release": "ncc build src/main.ts",
     "test": "jest"
   },
   "repository": {
@@ -20,11 +21,14 @@
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.0.0",
-    "@octokit/rest": "^16.28.9"
+    "@actions/github": "^1.1.0",
+    "puppeteer-core": "^1.20.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
+    "@types/puppeteer": "^1.19.1",
+    "@zeit/ncc": "^0.20.5",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",
     "ts-jest": "^24.0.2",

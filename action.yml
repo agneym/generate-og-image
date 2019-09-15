@@ -1,10 +1,6 @@
 name: 'Your name here'
 description: 'Provide a description here'
-author: 'Your name or organization here'
-inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'CHANGE DEFAULT VALUE?'
+author: 'Agney'
 runs:
-  using: 'node12'
-  main: 'lib/main.js'
+  using: 'docker'
+  image: 'Dockerfile'

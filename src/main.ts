@@ -1,6 +1,10 @@
+#!/usr/bin/env node
+
 import * as core from '@actions/core';
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
+import generateImage from './generate-image';
+import commitFile from './commit-file';
 
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
@@ -14,13 +18,10 @@ async function run() {
     console.log("This action only runs for pushes to PRs");
     process.exit(78);
   }
-  
-  try {
-    const myInput = core.getInput('myInput');
-    core.debug(`Hello ${myInput}`);
-  } catch (error) {
-    core.setFailed(error.message);
-  }
+
+  const image = await generateImage();
+
+  commitFile(image);
 }
 
 run();
