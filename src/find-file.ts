@@ -1,12 +1,26 @@
 import { debug } from "@actions/core";
 import fm from "front-matter";
+import { promises as fs } from "fs";
 import { PullsListFilesResponseItem } from "@octokit/rest";
 
-import { GITHUB_CONTEXT, USER_REPO, FORMATS } from "./constants";
+import {
+  GITHUB_CONTEXT,
+  USER_REPO,
+  FORMATS,
+  REPO_DIRECTORY
+} from "./constants";
 import octokit from "./github-api";
 
 function getAttributes(files: PullsListFilesResponseItem[]) {
-  return files.map(file => {});
+  return files.map(async file => {
+    const filename = file.filename;
+    const repoDirectory = REPO_DIRECTORY as string;
+    const contents = await fs.readFile(`${repoDirectory}/${filename}`, {
+      encoding: "utf8"
+    });
+    const { attributes } = fm(contents);
+    return attributes;
+  });
 }
 
 async function findFile() {
@@ -18,10 +32,10 @@ async function findFile() {
     repo,
     pull_number: pullNumber
   });
-  debug(`Files List ${filesList}`);
   const markdownFiles = filesList.filter(file => {
     return FORMATS.some(format => file.filename.endsWith(format));
   });
-  debug(`Markdown List ${JSON.stringify(markdownFiles)}`);
+  const frontmatter = getAttributes(markdownFiles);
+  debug(JSON.stringify(frontmatter));
 }
 export default findFile;
