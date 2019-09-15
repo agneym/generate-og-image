@@ -16,6 +16,8 @@ if (!GITHUB_REPOSITORY) {
   process.exit(1);
 }
 
+const FORMATS = [".md", ".mdx"];
+
 const USER_REPO = (GITHUB_REPOSITORY as string).split("/");
 
 const COMMITTER = {
@@ -25,6 +27,7 @@ const COMMITTER = {
 
 export {
   COMMITTER,
+  FORMATS,
   GITHUB_TOKEN,
   GITHUB_EVENT_NAME,
   GITHUB_EVENT_PATH,
