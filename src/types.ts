@@ -1,6 +1,6 @@
 export interface IFileProps {
   filename: string;
-  attributes: Partial<IProps>;
+  attributes: Partial<IRepoProps>;
 }
 
 export interface IProps {
@@ -14,7 +14,7 @@ export interface IFrontMatter {
   ogImage: IProps;
 }
 
-export interface IRepoProps {
+export interface IRepoProps extends IProps {
   assetPath: string;
   commitMsg: string;
 }

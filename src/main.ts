@@ -28,7 +28,10 @@ async function run() {
   }
 
   fileProperties.forEach(async property => {
-    const html = generateHtml(property.attributes);
+    const html = generateHtml({
+      ...repoProps,
+      ...property.attributes
+    });
 
     const image = await generateImage(html);
 

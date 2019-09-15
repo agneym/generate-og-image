@@ -6,7 +6,7 @@ import { IRepoProps } from "./types";
 
 async function commitFile(
   content: string,
-  repoProps: IRepoProps,
+  repoProps: Partial<IRepoProps>,
   filename: string
 ) {
   const [owner, repo] = USER_REPO;
@@ -15,9 +15,9 @@ async function commitFile(
     await octokit.repos.createOrUpdateFile({
       owner,
       repo,
-      path: `${repoProps.assetPath}${filename}.jpg`,
+      path: `${repoProps.assetPath || ""}${filename}.jpg`,
       branch: GITHUB_HEAD_REF,
-      message: repoProps.commitMsg,
+      message: repoProps.commitMsg || "",
       content,
       ...COMMITTER
     });
