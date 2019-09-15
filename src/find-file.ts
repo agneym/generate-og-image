@@ -1,6 +1,6 @@
 import { debug } from "@actions/core";
 import fm from "front-matter";
-import { promises as fs } from "fs";
+import { readFileSync } from "fs";
 import { PullsListFilesResponseItem } from "@octokit/rest";
 
 import {
@@ -13,10 +13,10 @@ import octokit from "./github-api";
 import { IFrontMatter } from "./types";
 
 async function getAttributes(files: PullsListFilesResponseItem[]) {
-  return await files.map(async file => {
+  return files.map(file => {
     const filename = file.filename;
     const repoDirectory = REPO_DIRECTORY as string;
-    const contents = await fs.readFile(`${repoDirectory}/${filename}`, {
+    const contents = readFileSync(`${repoDirectory}/${filename}`, {
       encoding: "utf8"
     });
     debug(`${repoDirectory}/${filename}`);
