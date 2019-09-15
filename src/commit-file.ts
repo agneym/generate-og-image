@@ -17,7 +17,7 @@ async function commitFile(content: string) {
       owner,
       repo,
       path: "dist/image.jpg",
-      branch: GITHUB_REF,
+      branch: GITHUB_HEAD_REF,
       message: "Just some wholesome content, yo all",
       content,
       ...COMMITTER,
