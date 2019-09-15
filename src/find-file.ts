@@ -48,8 +48,8 @@ async function findFile() {
   });
   const frontmatterAttributes = getAttributes(markdownFiles);
 
-  return frontmatterAttributes.filter(frontmatterAttribute =>
-    Object.keys(frontmatterAttribute.attributes)
+  return frontmatterAttributes.filter(
+    frontmatterAttribute => Object.keys(frontmatterAttribute.attributes).length
   );
 }
 export default findFile;
