@@ -18,6 +18,8 @@ function getAttributes(files: PullsListFilesResponseItem[]) {
     const contents = await fs.readFile(`${repoDirectory}/${filename}`, {
       encoding: "utf8"
     });
+    debug(`${repoDirectory}/${filename}`);
+    debug(contents);
     const { attributes } = fm(contents);
     return attributes;
   });
