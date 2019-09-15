@@ -19,7 +19,7 @@ function generateHtml(prop: Partial<IProps>) {
       <script type="module" rel="preload" src="https://unpkg.com/@agney/og-image-element@0.1.0"></script>
     </head>
     <body>
-      <og-image-element .subtitle=${prop.subtitle || ""}>
+      <og-image-element subtitle=${prop.subtitle || ""}>
         ${
           prop.imageUrl
             ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
