@@ -8,6 +8,9 @@ inputs:
   path:
     description: "Path to place generated assets"
     default: "demo/"
+  commitMsg:
+    description: "commit message to be shown when adding image"
+    default: "just some wholesome content. yo all!"
 runs:
   using: "docker"
   image: "Dockerfile"

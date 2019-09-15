@@ -32,7 +32,7 @@ async function run() {
 
     const image = await generateImage(html);
 
-    commitFile(image, repoProps.assetPath, property.filename);
+    commitFile(image, repoProps, property.filename);
   });
 }
 

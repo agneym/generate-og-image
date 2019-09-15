@@ -5,8 +5,10 @@ import { getInput } from "@actions/core";
  */
 async function getRepoProps() {
   const assetPath = getInput(`path`);
+  const commitMsg = getInput(`commitMsg`);
   return {
-    assetPath
+    assetPath,
+    commitMsg
   };
 }
 

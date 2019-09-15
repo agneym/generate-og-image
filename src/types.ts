@@ -13,3 +13,8 @@ export interface IProps {
 export interface IFrontMatter {
   ogImage: IProps;
 }
+
+export interface IRepoProps {
+  assetPath: string;
+  commitMsg: string;
+}
