@@ -25,7 +25,7 @@ COPY package.json package-lock.json /usr/local/src/generate-og-image/
 RUN npm ci
 
 # copy in src
-COPY LICENSE README.md /usr/local/src/generate-og-image/
+COPY tsconfig.json /usr/local/src/generate-og-image/
 COPY src/ /usr/local/src/generate-og-image/src/
 COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
 
