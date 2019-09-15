@@ -18,13 +18,15 @@ async function run() {
     process.exit(78);
   }
 
-  findFile();
+  const properties = await findFile();
 
-  const html = generateHtml();
+  properties.forEach(async property => {
+    const html = generateHtml(property);
 
-  const image = await generateImage(html);
+    const image = await generateImage(html);
 
-  commitFile(image);
+    commitFile(image);
+  });
 }
 
 run();

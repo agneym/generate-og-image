@@ -1,4 +1,6 @@
-function generateHtml() {
+import { IProps } from "./types";
+
+function generateHtml(prop: Partial<IProps>) {
   return `
     <!doctype html>
     <html lang="en-GB">
@@ -17,8 +19,8 @@ function generateHtml() {
       <script type="module" rel="preload" src="https://unpkg.com/@agney/og-image-element@0.1.0"></script>
     </head>
     <body>
-      <og-image-element .subtitle="Thing">
-        <div slot="title">Another Thing</div>
+      <og-image-element .subtitle=${prop.subtitle || ""}>
+        <div slot="title">${prop.title}</div>
       </og-image-element>
     </body>
     </html>

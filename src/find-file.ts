@@ -1,4 +1,3 @@
-import { debug } from "@actions/core";
 import fm from "front-matter";
 import { readFileSync } from "fs";
 import { PullsListFilesResponseItem } from "@octokit/rest";
@@ -19,8 +18,6 @@ async function getAttributes(files: PullsListFilesResponseItem[]) {
     const contents = readFileSync(`${repoDirectory}/${filename}`, {
       encoding: "utf8"
     });
-    debug(`${repoDirectory}/${filename}`);
-    debug(contents);
     const { attributes } = fm<IFrontMatter>(contents);
     return attributes;
   });
@@ -39,10 +36,9 @@ async function findFile() {
     return FORMATS.some(format => file.filename.endsWith(format));
   });
   const frontmatterAttributes = await getAttributes(markdownFiles);
-  debug(JSON.stringify(frontmatterAttributes));
 
-  frontmatterAttributes.filter(
-    frontmatterAttribute => frontmatterAttribute.ogImage
-  );
+  return frontmatterAttributes
+    .filter(frontmatterAttribute => frontmatterAttribute.ogImage)
+    .map(frontmatterAttribute => frontmatterAttribute.ogImage);
 }
 export default findFile;
