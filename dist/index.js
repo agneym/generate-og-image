@@ -22659,9 +22659,6 @@ function commitFile(content) {
     return __awaiter(this, void 0, void 0, function* () {
         const [owner, repo] = constants_1.USER_REPO;
         const event = yield github_event_1.default;
-        console.log(event);
-        core_1.debug(`Head ref, ${constants_1.GITHUB_HEAD_REF}`);
-        core_1.debug(`Event trigger ${event}`);
         try {
             yield github_api_1.default.repos.createOrUpdateFile(Object.assign({ owner,
                 repo, path: "dist/image.jpg", branch: constants_1.GITHUB_HEAD_REF, message: "Just some wholesome content, yo all", content }, constants_1.COMMITTER));
