@@ -2,6 +2,7 @@ const GITHUB_TOKEN = process.env["GITHUB_TOKEN"];
 const GITHUB_EVENT_NAME = process.env["GITHUB_EVENT_NAME"];
 const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"];
 const GITHUB_REPOSITORY = process.env["GITHUB_REPOSITORY"];
+const GITHUB_REF = process.env["GITHUB_REF"];
 
 if (!REPO_DIRECTORY) {
   console.log("There is no GITHUB_WORKSPACE environment variable");
@@ -24,6 +25,7 @@ export {
   COMMITTER,
   GITHUB_TOKEN,
   GITHUB_EVENT_NAME,
+  GITHUB_REF,
   REPO_DIRECTORY,
   USER_REPO,
 }

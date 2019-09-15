@@ -10903,6 +10903,8 @@ exports.GITHUB_EVENT_NAME = GITHUB_EVENT_NAME;
 const REPO_DIRECTORY = process.env["GITHUB_WORKSPACE"];
 exports.REPO_DIRECTORY = REPO_DIRECTORY;
 const GITHUB_REPOSITORY = process.env["GITHUB_REPOSITORY"];
+const GITHUB_REF = process.env["GITHUB_REF"];
+exports.GITHUB_REF = GITHUB_REF;
 if (!REPO_DIRECTORY) {
     console.log("There is no GITHUB_WORKSPACE environment variable");
     process.exit(1);
@@ -21162,10 +21164,11 @@ const constants_1 = __webpack_require__(211);
 function commitFile(content) {
     return __awaiter(this, void 0, void 0, function* () {
         const [owner, repo] = constants_1.USER_REPO;
-        yield github_api_1.default.repos.createFile({
+        yield github_api_1.default.repos.createOrUpdateFile({
             owner,
             repo,
             path: "dist/image.jpg",
+            branch: constants_1.GITHUB_REF,
             message: "Just some wholesome content, yo all",
             content,
         });
