@@ -1,11 +1,11 @@
 #!/usr/bin/env node
+import { warning, debug } from "@actions/core";
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
 import generateImage from "./generate-image";
 import commitFile from "./commit-file";
 import generateHtml from "./generate-html";
 import findFile from "./find-file";
-import { warning } from "@actions/core";
 import getRepoProps from "./repo-props";
 
 if (!GITHUB_TOKEN) {
@@ -22,6 +22,7 @@ async function run() {
 
   const repoProps = await getRepoProps();
   const fileProperties = await findFile();
+  debug(JSON.stringify(fileProperties));
 
   if (!fileProperties.length) {
     warning("No compatible files found");
