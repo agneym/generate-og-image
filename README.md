@@ -1,4 +1,4 @@
-# Open Graph Generator
+# Open Graph Image Generator
 
 Generates open graph images for your blog with Github Actions.
 
@@ -31,6 +31,8 @@ ogImage:
   title: "Things you don't know"
   subtitle: "There must be something"
   imageUrl: "https://example.com/image-url.jpg"
+  background-color: "yellow"
+  font-color: "rgb(0, 0, 0)"
 ---
 ```
 
@@ -46,4 +48,4 @@ Works only with Pull Requests and `md` and `mdx` files.
 
 3. [Github Image Actions](https://github.com/calibreapp/image-actions)
 
-   Some utils to copy from.
+   For some utils to copy from.
