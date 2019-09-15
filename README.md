@@ -33,3 +33,5 @@ ogImage:
   imageUrl: "https://example.com/image-url.jpg"
 ---
 ```
+
+Works only with Pull Requests and `md` and `mdx` files.
