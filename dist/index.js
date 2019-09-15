@@ -28640,7 +28640,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const puppeteer_core_1 = __importDefault(__webpack_require__(319));
 function generateImage(html = `<h1>Default content</h1>`) {
     return __awaiter(this, void 0, void 0, function* () {
-        const browser = yield puppeteer_core_1.default.launch({ executablePath: '/usr/bin/google-chrome-unstable' });
+        const browser = yield puppeteer_core_1.default.launch({ executablePath: '/usr/bin/google-chrome-unstable', args: ['--no-sandbox'] });
         const page = yield browser.newPage();
         yield page.setContent(html);
         const image = yield page.screenshot({ encoding: "base64" });
