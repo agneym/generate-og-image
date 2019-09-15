@@ -1,17 +1,29 @@
-import octokit from "./github-api";
+import { debug, error } from "@actions/core";
 
-import { USER_REPO, GITHUB_REF } from "./constants";
+import octokit from "./github-api";
+import eventDetails from "./github-event";
+import { USER_REPO, GITHUB_REF, COMMITTER } from "./constants";
 
 async function commitFile(content: string) {
   const [owner, repo] = USER_REPO;
-  await octokit.repos.createOrUpdateFile({
-    owner,
-    repo,
-    path: "dist/image.jpg",
-    branch: GITHUB_REF,
-    message: "Just some wholesome content, yo all",
-    content, 
-  });
+  const event = await eventDetails;
+  const branch = (event as any).pull_request.head.ref;
+  console.log(event);
+  debug(`Event trigger $event`);
+  
+  try {
+    await octokit.repos.createOrUpdateFile({
+      owner,
+      repo,
+      path: "dist/image.jpg",
+      branch: GITHUB_REF,
+      message: "Just some wholesome content, yo all",
+      content,
+      ...COMMITTER,
+    });
+  } catch(err) {
+    error(`Adding a commit to branch ${GITHUB_REF} failed with ${err}`);
+  }
 }
 
 export default commitFile;
