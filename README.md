@@ -26,12 +26,10 @@ For configuring the parameters, add following fields to the frontmatter:
 
 ```md
 ---
-
 title: "Things you don't know about something 2019"
 ogImage:
-title: "Things you don't know"
-subtitle: "There must be something"
-imageUrl: "https://example.com/image-url.jpg"
-
+  title: "Things you don't know"
+  subtitle: "There must be something"
+  imageUrl: "https://example.com/image-url.jpg"
 ---
 ```
