@@ -1,6 +1,4 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Agney'
+author: "Agney"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
