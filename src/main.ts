@@ -5,6 +5,8 @@ import generateImage from "./generate-image";
 import commitFile from "./commit-file";
 import generateHtml from "./generate-html";
 import findFile from "./find-file";
+import { warning } from "@actions/core";
+import getRepoProps from "./repo-props";
 
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
@@ -18,14 +20,19 @@ async function run() {
     process.exit(78);
   }
 
-  const properties = await findFile();
+  const repoProps = await getRepoProps();
+  const fileProperties = await findFile();
 
-  properties.forEach(async property => {
-    const html = generateHtml(property);
+  if (!fileProperties.length) {
+    warning("No compatible files found");
+  }
+
+  fileProperties.forEach(async property => {
+    const html = generateHtml(property.attributes);
 
     const image = await generateImage(html);
 
-    commitFile(image);
+    commitFile(image, repoProps.assetPath, property.filename);
   });
 }
 

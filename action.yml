@@ -4,6 +4,9 @@ author: "Agney"
 branding:
   icon: "share-2"
   color: "orange"
+inputs:
+  description: "Path to place generated assets"
+  default: "demo/"
 runs:
   using: "docker"
   image: "Dockerfile"
