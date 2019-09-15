@@ -35,3 +35,15 @@ ogImage:
 ```
 
 Works only with Pull Requests and `md` and `mdx` files.
+
+## Thanks
+
+1. [Zeit OG Image](https://github.com/zeit/og-image)
+
+   Serverless based open graph image generator from zeit
+
+2. [Zeit NCC](Compiler)
+
+3. [Github Image Actions](https://github.com/calibreapp/image-actions)
+
+   Some utils to copy from.
