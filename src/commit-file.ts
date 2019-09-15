@@ -2,17 +2,22 @@ import { error } from "@actions/core";
 
 import octokit from "./github-api";
 import { USER_REPO, COMMITTER, GITHUB_HEAD_REF } from "./constants";
+import { IRepoProps } from "./types";
 
-async function commitFile(content: string) {
+async function commitFile(
+  content: string,
+  repoProps: Partial<IRepoProps>,
+  filename: string
+) {
   const [owner, repo] = USER_REPO;
 
   try {
     await octokit.repos.createOrUpdateFile({
       owner,
       repo,
-      path: "dist/image.jpg",
+      path: `${repoProps.assetPath || ""}${filename}.jpg`,
       branch: GITHUB_HEAD_REF,
-      message: "Just some wholesome content, yo all",
+      message: repoProps.commitMsg || "",
       content,
       ...COMMITTER
     });

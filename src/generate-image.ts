@@ -1,6 +1,6 @@
 import puppeteer from "puppeteer-core";
 
-async function generateImage(html: string = `<h1>Default content</h1>`) {
+async function generateImage(html: string) {
   const browser = await puppeteer.launch({
     executablePath: "/usr/bin/google-chrome-unstable",
     args: ["--no-sandbox"]

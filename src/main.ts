@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-
-import * as core from '@actions/core';
+import { warning, debug } from "@actions/core";
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
-import generateImage from './generate-image';
-import commitFile from './commit-file';
+import generateImage from "./generate-image";
+import commitFile from "./commit-file";
+import generateHtml from "./generate-html";
+import findFile from "./find-file";
+import getRepoProps from "./repo-props";
 
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
@@ -12,16 +14,30 @@ if (!GITHUB_TOKEN) {
 }
 
 async function run() {
-
   // Bail out if the event that executed the action wasn’t a pull_request
   if (GITHUB_EVENT_NAME !== "pull_request") {
     console.log("This action only runs for pushes to PRs");
     process.exit(78);
   }
 
-  const image = await generateImage();
+  const repoProps = await getRepoProps();
+  const fileProperties = await findFile();
+  debug(JSON.stringify(fileProperties));
 
-  commitFile(image);
+  if (!fileProperties.length) {
+    warning("No compatible files found");
+  }
+
+  fileProperties.forEach(async property => {
+    const html = generateHtml({
+      ...repoProps,
+      ...property.attributes
+    });
+
+    const image = await generateImage(html);
+
+    commitFile(image, repoProps, property.filename);
+  });
 }
 
 run();

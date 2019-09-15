@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-template.git"
+    "url": "git@github.com:BoyWithSilverWings/generate-og-image.git"
   },
   "keywords": [
     "actions",
@@ -23,13 +23,16 @@
   "dependencies": {
     "@actions/core": "^1.0.0",
     "@actions/github": "^1.1.0",
+    "@zeit/ncc": "^0.20.5",
+    "front-matter": "^3.0.2",
+    "lodash": "^4.17.15",
+    "marked": "^0.7.0",
     "puppeteer-core": "^1.20.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/node": "^12.0.4",
     "@types/puppeteer": "^1.19.1",
-    "@zeit/ncc": "^0.20.5",
     "husky": "^3.0.5",
     "jest": "^24.8.0",
     "jest-circus": "^24.7.1",

@@ -8,11 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
       - name: Generate Image
         uses: ./ # Uses an action in the root directory
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_CONTEXT: ${{ toJson(github) }}
