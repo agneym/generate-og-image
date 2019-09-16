@@ -1,7 +1,7 @@
-import { IProps } from "./types";
+import { IRepoProps } from "./types";
 import { debug } from "@actions/core";
 
-function generateHtml(prop: Partial<IProps>) {
+function generateHtml(prop: Partial<IRepoProps>) {
   debug(JSON.stringify(prop));
   return `
     <!doctype html>
@@ -20,7 +20,7 @@ function generateHtml(prop: Partial<IProps>) {
           --font-color: ${prop.fontColor};
         }
       </style>
-      <script type="module" rel="preload" src="https://unpkg.com/@agney/og-image-element@0.1.0"></script>
+      <script type="module" rel="preload" src="${prop.componentUrl}"></script>
     </head>
     <body>
       <og-image-element subtitle=${prop.subtitle || ""}>

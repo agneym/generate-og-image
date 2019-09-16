@@ -19,4 +19,5 @@ export interface IFrontMatter {
 export interface IRepoProps extends IProps {
   assetPath: string;
   commitMsg: string;
+  componentUrl: string;
 }
