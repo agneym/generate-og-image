@@ -8,8 +8,10 @@ async function getRepoProps() {
   const commitMsg = getInput(`commitMsg`);
   const backgroundColor = getInput(`background-color`);
   const fontColor = getInput(`font-color`);
+  const componentUrl = getInput("componentUrl");
   return {
     assetPath,
+    componentUrl,
     commitMsg,
     backgroundColor,
     fontColor
