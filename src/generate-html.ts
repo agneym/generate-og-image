@@ -1,6 +1,8 @@
 import { IProps } from "./types";
+import { debug } from "@actions/core";
 
 function generateHtml(prop: Partial<IProps>) {
+  debug(JSON.stringify(prop));
   return `
     <!doctype html>
     <html lang="en-GB">
