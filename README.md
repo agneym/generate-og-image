@@ -2,6 +2,8 @@
 
 Generates open graph images for your blog with Github Actions.
 
+In your action file:
+
 ```yml
 name: "Generate OG Images"
 on: pull_request
@@ -26,15 +28,26 @@ For configuring the parameters, add following fields to the frontmatter:
 
 ```md
 ---
-title: "Things you don't know about something 2019"
 ogImage:
   title: "Things you don't know"
   subtitle: "There must be something"
   imageUrl: "https://example.com/image-url.jpg"
-  background-color: "yellow"
-  font-color: "rgb(0, 0, 0)"
+  background: "yellow"
+  fontColor: "rgb(0, 0, 0)"
+  fontSize: "100%"
 ---
 ```
+
+## Frontmatter Props
+
+| Props      |               Description               | Required |
+| ---------- | :-------------------------------------: | -------: |
+| title      |           Title of the image            |          |
+| subtitle   |          Subtitle of the image          |          |
+| imageUrl   |     The image thumbnail on the top      |          |
+| background | Background color, gradient or image url |
+| fontColor  |         any css supported color         |
+| fontSize   |              the font size              |
 
 Works only with Pull Requests and `md` and `mdx` files.
 
