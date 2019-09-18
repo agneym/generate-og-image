@@ -17,7 +17,8 @@ function generateHtml(prop: Partial<IRepoProps>) {
         og-image-element {
           --heading-font: 'Nunito', serif;
           --background: ${prop.background};
-          --font-color: ${prop["font-color"]};
+          --font-color: ${prop.fontColor};
+          --font-size: ${prop.fontSize};
         }
       </style>
       <script type="module" rel="preload" src="${prop.componentUrl}"></script>

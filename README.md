@@ -45,11 +45,34 @@ ogImage:
 | title      |           Title of the image            |          |
 | subtitle   |          Subtitle of the image          |          |
 | imageUrl   |     The image thumbnail on the top      |          |
-| background | Background color, gradient or image url |
-| fontColor  |         any css supported color         |
-| fontSize   |              the font size              |
+| background | Background color, gradient or image url |          |
+| fontColor  |         any css supported color         |          |
+| fontSize   |              the font size              |          |
 
 Works only with Pull Requests and `md` and `mdx` files.
+
+## Repository level Props
+
+These are props that you can configure in the action file to customise the working.
+
+| Props        |               Description                | Required |
+| ------------ | :--------------------------------------: | -------: |
+| path         |      Path to place the image URL in      |     true |
+| commitMsg    |    Commit message when image is added    |          |
+| background   | Background color, gradient or image url  |          |
+| fontColor    |         any css supported color          |          |
+| fontSize     |              the font size               |          |
+| componentUrl | Web Component to be rendered for output. |          |
+
+Frontmatter level props on a document always takes precedence over Repository level props.
+
+### I need more customisation on the output.
+
+The generator uses a web component to create the default output and provides a repository level prop to customise this web component.
+
+The component currently being used is on [Github](https://github.com/BoyWithSilverWings/og-image-element) and published on [NPM](https://www.npmjs.com/package/@agney/og-image-element). The default URL is from [Unpkg](https://unpkg.com/) with [https://unpkg.com/@agney/og-image-element@0.2.0](https://unpkg.com/@agney/og-image-element@0.2.0).
+
+You can substitute the same with `componentUrl` input in your workflow file. For more info on creating this web component, visit [source](https://github.com/BoyWithSilverWings/generate-og-image/blob/304fd9aa0b21b01b0fdc8a3d1a63a19ffdc1840d/demo/test-file.jpg)
 
 ## Thanks
 
