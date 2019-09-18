@@ -19,7 +19,7 @@ inputs:
     default: "#000000"
   componentUrl:
     description: "URL for web component"
-    default: "https://unpkg.com/@agney/og-image-element@0.1.0"
+    default: "https://unpkg.com/@agney/og-image-element@0.1.1"
 runs:
   using: "docker"
   image: "Dockerfile"

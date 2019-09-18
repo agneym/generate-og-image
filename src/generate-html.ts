@@ -16,7 +16,7 @@ function generateHtml(prop: Partial<IRepoProps>) {
         }
         og-image-element {
           --heading-font: 'Aleo', serif;
-          --background-color: ${prop.backgroundColor};
+          --background: ${prop.backgroundColor};
           --font-color: ${prop.fontColor};
         }
       </style>
