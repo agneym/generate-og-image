@@ -1,6 +1,13 @@
 import { IRepoProps } from "./types";
 import { debug } from "@actions/core";
 
+function createVariables(name: string, value?: string) {
+  if (value) {
+    return `--${name}: ${value};`;
+  }
+  return "";
+}
+
 function generateHtml(prop: Partial<IRepoProps>) {
   debug(JSON.stringify(prop));
   return `
@@ -16,9 +23,9 @@ function generateHtml(prop: Partial<IRepoProps>) {
         }
         og-image-element {
           --heading-font: 'Nunito', serif;
-          --background: ${prop.background};
-          --font-color: ${prop.fontColor};
-          --font-size: ${prop.fontSize};
+          ${createVariables("fontColor", prop.fontColor)}
+          ${createVariables("background", prop.background)}
+          ${createVariables("fontSize", prop.fontSize)}
         }
       </style>
       <script type="module" rel="preload" src="${prop.componentUrl}"></script>
@@ -30,7 +37,7 @@ function generateHtml(prop: Partial<IRepoProps>) {
             ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
             : ``
         }
-        <div slot="title">${prop.title}</div>
+        <div slot="title">${prop.title || ""}</div>
       </og-image-element>
     </body>
     </html>
