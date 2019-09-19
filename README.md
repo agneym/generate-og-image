@@ -2,6 +2,8 @@
 
 Generates open graph images for your blog with Github Actions.
 
+This github action scans your PR for changes to `md` or `mdx` files, reads frontmatter configuration from them and generates images for your SEO.
+
 In your action file:
 
 ```yml

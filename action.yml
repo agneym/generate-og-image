@@ -19,7 +19,7 @@ inputs:
     default: "#000000"
   componentUrl:
     description: "URL for web component"
-    default: "https://unpkg.com/@agney/og-image-element@0.2.0"
+    default: "https://unpkg.com/@agney/og-image-element@0.2.2"
   fontSize:
     description: "Font size for the root"
     default: "100%"

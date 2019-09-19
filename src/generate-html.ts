@@ -31,7 +31,7 @@ function generateHtml(prop: Partial<IRepoProps>) {
       <script type="module" rel="preload" src="${prop.componentUrl}"></script>
     </head>
     <body>
-      <og-image-element subtitle=${prop.subtitle || ""}>
+      <og-image-element subtitle="${prop.subtitle || ""}">
         ${
           prop.imageUrl
             ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
