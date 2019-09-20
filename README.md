@@ -1,5 +1,7 @@
 # Open Graph Image Generator
 
+![](https://github.com/BoyWithSilverWings/generate-og-image/workflows/Run%20tests/badge.svg)
+
 Generates open graph images for your blog with Github Actions.
 
 This github action scans your PR for changes to `md` or `mdx` files, reads frontmatter configuration from them and generates images for your SEO.
@@ -81,7 +83,7 @@ Frontmatter level props on a document always takes precedence over Repository le
    background: linear-gradient(to right, #ec008c, #fc6767);
    ```
 
-2. What if I need an image as background?
+2. **What if I need an image as background?**
 
    Write the CSS for it.
 
@@ -89,7 +91,7 @@ Frontmatter level props on a document always takes precedence over Repository le
    background: url(https://example.com/image.png)
    ```
 
-3. What about font sizes?
+3. **What about font sizes?**
 
    you can customise the repository level or frontmatter `fontSize` props which defaults to 100%. The heading and paragraph font sizes vary depending on it.
 
