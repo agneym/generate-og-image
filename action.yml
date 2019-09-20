@@ -23,6 +23,12 @@ inputs:
   fontSize:
     description: "Font size for the root"
     default: "100%"
+  width:
+    description: "Width of the screen"
+    default: "1200"
+  height:
+    description: "Height of the screen"
+    default: "630"
 runs:
   using: "docker"
   image: "Dockerfile"

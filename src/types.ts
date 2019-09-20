@@ -21,4 +21,11 @@ export interface IRepoProps extends IProps {
   assetPath: string;
   commitMsg: string;
   componentUrl: string;
+  width: string | number;
+  height: string | number;
+}
+
+export interface IViewport {
+  width: string | number;
+  height: string | number;
 }

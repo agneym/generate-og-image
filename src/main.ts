@@ -23,6 +23,11 @@ async function run() {
   const repoProps = await getRepoProps();
   const fileProperties = await findFile();
 
+  const viewport = {
+    width: repoProps.width,
+    height: repoProps.height
+  };
+
   if (!fileProperties.length) {
     warning("No compatible files found");
   }
@@ -33,7 +38,7 @@ async function run() {
       ...property.attributes
     });
 
-    const image = await generateImage(html);
+    const image = await generateImage(viewport, html);
 
     commitFile(image, repoProps, property.filename);
   });
