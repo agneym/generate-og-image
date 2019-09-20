@@ -4,6 +4,12 @@ import octokit from "./github-api";
 import { USER_REPO, COMMITTER, GITHUB_HEAD_REF } from "./constants";
 import { IRepoProps } from "./types";
 
+/**
+ * Commit the image with reported filename and commit messsage
+ * @param content Image to be commited
+ * @param repoProps properties
+ * @param filename file to be commited as
+ */
 async function commitFile(
   content: string,
   repoProps: Partial<IRepoProps>,

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { warning, debug } from "@actions/core";
+import { warning } from "@actions/core";
 
 import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
 import generateImage from "./generate-image";
@@ -23,11 +23,6 @@ async function run() {
   const repoProps = await getRepoProps();
   const fileProperties = await findFile();
 
-  const viewport = {
-    width: repoProps.width,
-    height: repoProps.height
-  };
-
   if (!fileProperties.length) {
     warning("No compatible files found");
   }
@@ -38,7 +33,13 @@ async function run() {
       ...property.attributes
     });
 
-    const image = await generateImage(viewport, html);
+    const image = await generateImage(
+      {
+        width: repoProps.width,
+        height: repoProps.height
+      },
+      html
+    );
 
     commitFile(image, repoProps, property.filename);
   });
