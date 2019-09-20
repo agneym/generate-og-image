@@ -1,5 +1,4 @@
 import { IRepoProps } from "./types";
-import { debug } from "@actions/core";
 
 function createVariables(name: string, value?: string) {
   if (value) {
@@ -9,7 +8,6 @@ function createVariables(name: string, value?: string) {
 }
 
 function generateHtml(prop: Partial<IRepoProps>) {
-  debug(JSON.stringify(prop));
   return `
     <!doctype html>
     <html lang="en-GB">

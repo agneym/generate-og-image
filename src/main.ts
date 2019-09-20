@@ -22,7 +22,6 @@ async function run() {
 
   const repoProps = await getRepoProps();
   const fileProperties = await findFile();
-  debug(JSON.stringify(fileProperties));
 
   if (!fileProperties.length) {
     warning("No compatible files found");
