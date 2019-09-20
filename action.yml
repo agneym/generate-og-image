@@ -11,12 +11,24 @@ inputs:
   commitMsg:
     description: "commit message to be shown when adding image"
     default: "just some wholesome content. yo all!"
-  background-color:
+  background:
     description: "background color for image"
     default: "#ffffff"
-  font-color:
+  fontColor:
     description: "font color for image"
     default: "#000000"
+  componentUrl:
+    description: "URL for web component"
+    default: "https://unpkg.com/@agney/og-image-element@0.2.2"
+  fontSize:
+    description: "Font size for the root"
+    default: "100%"
+  width:
+    description: "Width of the screen"
+    default: "1200"
+  height:
+    description: "Height of the screen"
+    default: "630"
 runs:
   using: "docker"
   image: "Dockerfile"

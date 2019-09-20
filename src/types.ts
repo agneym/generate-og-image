@@ -8,8 +8,9 @@ export interface IProps {
   subtitle: string;
   filename: string;
   imageUrl: string;
-  backgroundColor: string;
+  background: string;
   fontColor: string;
+  fontSize: string;
 }
 
 export interface IFrontMatter {
@@ -19,4 +20,12 @@ export interface IFrontMatter {
 export interface IRepoProps extends IProps {
   assetPath: string;
   commitMsg: string;
+  componentUrl: string;
+  width: string | number;
+  height: string | number;
+}
+
+export interface IViewport {
+  width: string | number;
+  height: string | number;
 }
