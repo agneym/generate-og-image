@@ -1,5 +1,6 @@
 import fm from "front-matter";
 import { readFileSync } from "fs";
+import { kebabCase } from "lodash";
 import { PullsListFilesResponseItem } from "@octokit/rest";
 
 import {
@@ -12,13 +13,16 @@ import octokit from "./github-api";
 import { IFrontMatter, IFileProps } from "./types";
 
 /**
- * Get name of the file by stripping the extensions
+ * Get name of the file if provided by the user or title in kebab case
  * @param filename
+ * @param title
  */
-function getFileName(filename: string) {
-  const { length: len, [len - 1]: last } = filename.split("/");
-  const name = last.replace(/.mdx?/, "");
-  return name;
+function getFileName(filename: string | undefined, title: string) {
+  if (filename) {
+    return filename;
+  } else {
+    return kebabCase(title);
+  }
 }
 
 /**
@@ -33,11 +37,15 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
       encoding: "utf8"
     });
     const { attributes } = fm<IFrontMatter>(contents);
+    const reqdAttributes = Object.keys(attributes).length
+      ? { ...(attributes.ogImage || {}) }
+      : {};
     return {
-      filename: getFileName(filename),
-      attributes: Object.keys(attributes).length
-        ? { ...(attributes.ogImage || {}) }
-        : {}
+      filename: getFileName(
+        reqdAttributes["filename"],
+        reqdAttributes["title"]
+      ),
+      attributes: reqdAttributes
     };
   });
 }

@@ -8,6 +8,7 @@ ogImage:
   background: red
   fontColor: yellow
   fontSize: 90%
+  filename: this-file
 ---
 
 This is some text about some stuff that happened sometime ago
