@@ -63,7 +63,6 @@ describe("Generate HTML", () => {
     const result = generateHtml({
       imageUrl: "😍"
     });
-    console.log(result);
     expect(result.includes(`class="emoji"`)).toBe(true);
   });
 });
