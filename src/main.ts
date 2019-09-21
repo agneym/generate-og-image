@@ -8,6 +8,7 @@ import generateHtml from "./generate-html";
 import findFile from "./find-file";
 import getRepoProps from "./repo-props";
 import commentMarkdown from "./comment-markdown";
+import createComment from "./create-comment";
 
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
@@ -44,7 +45,10 @@ async function run() {
 
     commitFile(image, repoProps, property.filename);
 
-    commentMarkdown(`${repoProps.assetPath}/${property.filename}`);
+    const markdown = commentMarkdown(
+      `${repoProps.assetPath}/${property.filename}`
+    );
+    await createComment(markdown);
   });
 }
 

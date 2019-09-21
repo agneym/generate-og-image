@@ -14,4 +14,4 @@ const createComment = async body => {
   });
 };
 
-module.exports = createComment;
+export default createComment;
