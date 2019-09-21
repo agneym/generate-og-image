@@ -4,8 +4,8 @@ description: Nothing to see here
 ogImage:
   title: Generating *open graph* images _with_ Github Actions
   subtitle: Works with Markdown files
-  imageUrl: 😍
-  fontSize: 120%
+  imageUrl: "🥳"
+  background: "linear-gradient(to right, #000428, #004e92)"
   filename: this-file
 ---
 

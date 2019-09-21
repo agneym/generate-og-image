@@ -61,8 +61,12 @@ describe("Generate HTML", () => {
 
   it("process emojis", () => {
     const result = generateHtml({
-      imageUrl: "😍"
+      imageUrl: "😍",
+      title: "Generating open graph images with Github Actions",
+      subtitle: "Works with Markdown files",
+      componentUrl: "https://unpkg.com/@agney/og-image-element@0.2.0"
     });
+    console.log(result);
     expect(result.includes(`class="emoji"`)).toBe(true);
   });
 });

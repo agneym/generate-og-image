@@ -99,6 +99,14 @@ Frontmatter level props on a document always takes precedence over Repository le
    fontSize: 120%;
    ```
 
+4. **I need an emoji instead of image**
+
+   You can pass in the unicode representation of the emoji from the [List](https://unicode.org/emoji/charts/full-emoji-list.html) in `imageUrl` prop.
+
+5. **I need to format the title**
+
+   The `title` prop supports markdown, feel _free_ to _use_ it.
+
 ### I need more customisation on the output.
 
 The generator uses a web component to create the default output and provides a repository level prop to customise this web component.
