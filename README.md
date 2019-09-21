@@ -107,6 +107,10 @@ The component currently being used is on [Github](https://github.com/BoyWithSilv
 
 You can substitute the same with `componentUrl` input in your workflow file. For more info on creating this web component, visit [source](https://github.com/BoyWithSilverWings/generate-og-image/blob/304fd9aa0b21b01b0fdc8a3d1a63a19ffdc1840d/demo/test-file.jpg)
 
+## Contributing
+
+See [docs](./docs/contributors.md)
+
 ## Credits
 
 1. [Zeit OG Image](https://github.com/zeit/og-image)
