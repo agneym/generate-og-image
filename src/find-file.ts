@@ -66,6 +66,7 @@ async function findFile() {
   const markdownFiles = filesList.filter(file => {
     return FORMATS.some(format => file.filename.endsWith(format));
   });
+
   const frontmatterAttributes = getAttributes(markdownFiles);
 
   return frontmatterAttributes.filter(
