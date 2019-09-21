@@ -3,14 +3,10 @@ import { readFileSync } from "fs";
 import { kebabCase } from "lodash";
 import { PullsListFilesResponseItem } from "@octokit/rest";
 
-import {
-  GITHUB_CONTEXT,
-  USER_REPO,
-  FORMATS,
-  REPO_DIRECTORY
-} from "./constants";
+import { USER_REPO, FORMATS, REPO_DIRECTORY } from "./constants";
 import octokit from "./github-api";
 import { IFrontMatter, IFileProps } from "./types";
+import getPrNumber from "./get-pr-number";
 
 /**
  * Get name of the file if provided by the user or title in kebab case
@@ -56,8 +52,8 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
  */
 async function findFile() {
   const [owner, repo] = USER_REPO;
-  const githubCtx: any = JSON.parse(GITHUB_CONTEXT as string);
-  const pullNumber = githubCtx.event.number;
+  const pullNumber = getPrNumber();
+
   const { data: filesList } = await octokit.pulls.listFiles({
     owner,
     repo,

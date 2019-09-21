@@ -3,9 +3,8 @@ title: Just hack'n
 description: Nothing to see here
 ogImage:
   title: Generating *open graph* images with Github Actions
-  subtitle: Works with Markdown files
+  subtitle: Images for your blog
   imageUrl: "🥳"
-  background: "linear-gradient(to right, #000428, #004e92)"
   filename: this-file
 ---
 
