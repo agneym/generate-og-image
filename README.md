@@ -80,7 +80,7 @@ Frontmatter level props on a document always takes precedence over Repository le
    Just as in CSS your frontmatter or Repo level prop can contain:
 
    ```
-   background: linear-gradient(to right, #ec008c, #fc6767);
+   background: 'linear-gradient(to right, #ec008c, #fc6767)'
    ```
 
 2. **What if I need an image as background?**
@@ -88,7 +88,7 @@ Frontmatter level props on a document always takes precedence over Repository le
    Write the CSS for it.
 
    ```
-   background: url(https://example.com/image.png)
+   background: 'url(https://example.com/image.png)'
    ```
 
 3. **What about font sizes?**
