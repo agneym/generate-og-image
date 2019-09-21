@@ -64,6 +64,6 @@ describe("Generate HTML", () => {
       imageUrl: "😍"
     });
     console.log(result);
-    expect(result.includes("twitter")).toBe(true);
+    expect(result.includes(`class="emoji"`)).toBe(true);
   });
 });

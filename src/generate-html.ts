@@ -15,7 +15,11 @@ function getImageUrl(imageUrl?: string) {
     return "";
   }
   if (twemoji.test(imageUrl)) {
-    return twemoji.parse(imageUrl);
+    return twemoji.parse(imageUrl, {
+      attributes: () => ({
+        slot: "image"
+      })
+    });
   }
   return `<img slot="image" src="${imageUrl}" height="100%" />`;
 }
