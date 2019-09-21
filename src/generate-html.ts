@@ -1,4 +1,5 @@
 import marked from "marked";
+import twemoji from "twemoji";
 
 import { IRepoProps } from "./types";
 
@@ -7,6 +8,27 @@ function createVariables(name: string, value?: string) {
     return `--${name}: ${value};`;
   }
   return "";
+}
+
+function getImageUrl(imageUrl?: string) {
+  if (!imageUrl) {
+    return "";
+  }
+  if (twemoji.test(imageUrl)) {
+    return twemoji.parse(imageUrl, {
+      attributes: () => ({
+        slot: "image"
+      })
+    });
+  }
+  return `<img slot="image" src="${imageUrl}" height="100%" />`;
+}
+
+function getMarked(text?: string) {
+  if (!text) {
+    return "";
+  }
+  return marked(text);
 }
 
 function generateHtml(prop: Partial<IRepoProps>) {
@@ -32,12 +54,8 @@ function generateHtml(prop: Partial<IRepoProps>) {
     </head>
     <body>
       <og-image-element subtitle="${prop.subtitle || ""}">
-        ${
-          prop.imageUrl
-            ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
-            : ``
-        }
-        <div slot="title">${marked(prop.title || "")}</div>
+        ${getImageUrl(prop.imageUrl)}
+        <div slot="title">${getMarked(prop.title)}</div>
       </og-image-element>
     </body>
     </html>
