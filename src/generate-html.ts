@@ -1,3 +1,5 @@
+import marked from "marked";
+
 import { IRepoProps } from "./types";
 
 function createVariables(name: string, value?: string) {
@@ -35,7 +37,7 @@ function generateHtml(prop: Partial<IRepoProps>) {
             ? `<img slot="image" src="${prop.imageUrl}" height="100%" />`
             : ``
         }
-        <div slot="title">${prop.title || ""}</div>
+        <div slot="title">${marked(prop.title || "")}</div>
       </og-image-element>
     </body>
     </html>
