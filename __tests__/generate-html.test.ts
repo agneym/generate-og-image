@@ -35,7 +35,7 @@ describe("Generate HTML", () => {
     expect(result.includes(`slot="title"`)).toBe(true);
   });
 
-  it(`creates large payload`, () => {
+  it(`creates html output for large payload`, () => {
     const result = generateHtml({
       assetPath: "demo/",
       componentUrl: "https://unpkg.com/@agney/og-image-element@0.2.0",
@@ -47,7 +47,16 @@ describe("Generate HTML", () => {
       subtitle: "Works with Markdown files",
       imageUrl: "https://avatars3.githubusercontent.com/u/8883368?s=40&v=4"
     });
+    expect(result).toBeTruthy();
+  });
+
+  it("adds gradient as background", () => {
+    const result = generateHtml({
+      background: "linear-gradient(to right, #000428, #004e92)"
+    });
     console.log(result);
-    expect(true).toBe(true);
+    expect(result.includes("linear-gradient(to right, #000428, #004e92)")).toBe(
+      true
+    );
   });
 });
