@@ -54,9 +54,15 @@ describe("Generate HTML", () => {
     const result = generateHtml({
       background: "linear-gradient(to right, #000428, #004e92)"
     });
-    console.log(result);
     expect(result.includes("linear-gradient(to right, #000428, #004e92)")).toBe(
       true
     );
+  });
+
+  it("process emojis", () => {
+    const result = generateHtml({
+      imageUrl: "😍"
+    });
+    expect(result.includes(`class="emoji"`)).toBe(true);
   });
 });
