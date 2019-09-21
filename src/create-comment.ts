@@ -9,7 +9,7 @@ const createComment = async body => {
   return octokit.issues.createComment({
     owner,
     repo,
-    number: prNumber,
+    issue_number: prNumber,
     body
   });
 };

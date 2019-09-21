@@ -46,7 +46,7 @@ async function run() {
     commitFile(image, repoProps, property.filename);
 
     const markdown = commentMarkdown(
-      `${repoProps.assetPath}/${property.filename}`
+      `${repoProps.assetPath}${property.filename}`
     );
     await createComment(markdown);
   });
