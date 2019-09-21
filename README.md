@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Generate Image
-        uses: BoyWithSilverWings/generate-og-image@1.0.0@beta
+        uses: BoyWithSilverWings/generate-og-image@1.0.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_CONTEXT: ${{ toJson(github) }}
