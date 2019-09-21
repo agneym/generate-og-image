@@ -20,6 +20,13 @@ function getImageUrl(imageUrl?: string) {
   return `<img slot="image" src="${imageUrl}" height="100%" />`;
 }
 
+function getMarked(text?: string) {
+  if (!text) {
+    return "";
+  }
+  return marked(text);
+}
+
 function generateHtml(prop: Partial<IRepoProps>) {
   return `
     <!doctype html>
@@ -42,9 +49,9 @@ function generateHtml(prop: Partial<IRepoProps>) {
       <script type="module" rel="preload" src="${prop.componentUrl}"></script>
     </head>
     <body>
-      <og-image-element subtitle="${prop.subtitle || ""}">
+      <og-image-element subtitle="${getMarked(prop.subtitle)}">
         ${getImageUrl(prop.imageUrl)}
-        <div slot="title">${marked(prop.title || "")}</div>
+        <div slot="title">${getMarked(prop.title)}</div>
       </og-image-element>
     </body>
     </html>
