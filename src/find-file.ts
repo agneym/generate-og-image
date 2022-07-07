@@ -38,7 +38,7 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
       : {};
     return {
       filename: getFileName(
-        reqdAttributes["filename"],
+        reqdAttributes["fileName"],
         reqdAttributes["title"]
       ),
       attributes: reqdAttributes
