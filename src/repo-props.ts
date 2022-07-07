@@ -12,6 +12,7 @@ async function getRepoProps() {
   const fontSize = getInput("fontSize");
   const width = getInput("width");
   const height = getInput("height");
+  const botComments = getInput("botComments");
   return {
     assetPath,
     componentUrl,
@@ -20,7 +21,8 @@ async function getRepoProps() {
     fontColor,
     fontSize,
     width,
-    height
+    height,
+    botComments
   };
 }
 
