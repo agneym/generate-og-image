@@ -62,14 +62,15 @@ Works only with Pull Requests and `md` and `mdx` files.
 
 These are props that you can configure in the action file to customise the working.
 
-| Props        |               Description                | Required |
-| ------------ | :--------------------------------------: | :------: |
-| path         |      Path to place the image URL in      |   true   |
-| commitMsg    |    Commit message when image is added    |          |
-| background   | Background color, gradient or image url  |          |
-| fontColor    |         any css supported color          |          |
-| fontSize     |              the font size               |          |
-| componentUrl | Web Component to be rendered for output. |          |
+| Props        |               Description                               | Required |
+| ------------ | :-----------------------------------------------------: | :------: |
+| path         |      Path to place the image URL in                     |   true   |
+| commitMsg    |    Commit message when image is added                   |          |
+| background   | Background color, gradient or image url                 |          |
+| fontColor    |         any css supported color                         |          |
+| fontSize     |              the font size                              |          |
+| componentUrl | Web Component to be rendered for output.                |          |
+| botComments  | Whether a comment with a preview image should be posted |
 
 Frontmatter level props on a document always takes precedence over Repository level props.
 
@@ -106,6 +107,10 @@ Frontmatter level props on a document always takes precedence over Repository le
 5. **I need to format the title**
 
    The `title` prop supports markdown, feel _free_ to _use_ it.
+   
+6. **I don't want these preview image bot comments**
+
+   the `botComments` repo prop should be set to `"no"`
 
 ### I need more customisation on the output.
 
