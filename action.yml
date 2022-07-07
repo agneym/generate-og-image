@@ -29,6 +29,9 @@ inputs:
   height:
     description: "Height of the screen"
     default: "630"
+  botComments:
+    description: "Whether a comment with a preview image should be posted"
+    default: "yes"
 runs:
   using: "docker"
   image: "Dockerfile"
