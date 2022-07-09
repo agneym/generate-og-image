@@ -10,6 +10,10 @@ import getRepoProps from "./repo-props";
 import commentMarkdown from "./comment-markdown";
 import createComment from "./create-comment";
 
+// make the process error non-successful
+// on e.g. unhandled promise rejections
+process.on('unhandledRejection', up => { throw up })
+
 if (!GITHUB_TOKEN) {
   console.log("You must enable the GITHUB_TOKEN secret");
   process.exit(1);
