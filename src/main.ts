@@ -10,7 +10,7 @@ import getRepoProps from "./repo-props";
 import commentMarkdown from "./comment-markdown";
 import createComment from "./create-comment";
 
-// make the process error non-successful
+// make the process exit non-successful
 // on e.g. unhandled promise rejections
 process.on('unhandledRejection', up => { throw up })
 
