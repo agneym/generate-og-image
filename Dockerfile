@@ -1,5 +1,5 @@
  
-FROM node:12.10
+FROM node:16
 
 RUN  apt-get update \
      # See https://crbug.com/795759
