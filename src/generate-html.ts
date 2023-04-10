@@ -1,4 +1,4 @@
-import marked from "marked";
+import { marked } from "marked";
 import twemoji from "twemoji";
 
 import { IRepoProps } from "./types";
