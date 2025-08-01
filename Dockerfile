@@ -40,7 +40,7 @@ COPY tsconfig.json /usr/local/src/generate-og-image/
 COPY src/ /usr/local/src/generate-og-image/src/
 COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
 
-RUN npm run build-release
+RUN NODE_OPTIONS="--openssl-legacy-provider" npm run build-release
 
 RUN chmod +x /usr/local/src/generate-og-image/dist/index.js
 
