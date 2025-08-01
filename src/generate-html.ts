@@ -28,7 +28,7 @@ function getMarked(text?: string) {
   if (!text) {
     return "";
   }
-  return marked(text);
+  return marked.parse(text);
 }
 
 function generateHtml(prop: Partial<IRepoProps>) {
