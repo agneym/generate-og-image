@@ -4,35 +4,35 @@ import twemoji from "twemoji";
 import { IRepoProps } from "./types";
 
 function createVariables(name: string, value?: string) {
-  if (value) {
-    return `--${name}: ${value};`;
-  }
-  return "";
+	if (value) {
+		return `--${name}: ${value};`;
+	}
+	return "";
 }
 
 function getImageUrl(imageUrl?: string) {
-  if (!imageUrl) {
-    return "";
-  }
-  if (twemoji.test(imageUrl)) {
-    return twemoji.parse(imageUrl, {
-      attributes: () => ({
-        slot: "image"
-      })
-    });
-  }
-  return `<img slot="image" src="${imageUrl}" height="100%" />`;
+	if (!imageUrl) {
+		return "";
+	}
+	if (twemoji.test(imageUrl)) {
+		return twemoji.parse(imageUrl, {
+			attributes: () => ({
+				slot: "image",
+			}),
+		});
+	}
+	return `<img slot="image" src="${imageUrl}" height="100%" />`;
 }
 
 function getMarked(text?: string) {
-  if (!text) {
-    return "";
-  }
-  return marked(text);
+	if (!text) {
+		return "";
+	}
+	return marked(text);
 }
 
 function generateHtml(prop: Partial<IRepoProps>) {
-  return `
+	return `
     <!doctype html>
     <html lang="en-GB">
     <head>

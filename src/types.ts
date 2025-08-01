@@ -1,31 +1,31 @@
 export interface IFileProps {
-  filename: string;
-  attributes: Partial<IRepoProps>;
+	filename: string;
+	attributes: Partial<IRepoProps>;
 }
 
 export interface IProps {
-  title: string;
-  subtitle: string;
-  filename: string;
-  imageUrl: string;
-  background: string;
-  fontColor: string;
-  fontSize: string;
+	title: string;
+	subtitle: string;
+	filename: string;
+	imageUrl: string;
+	background: string;
+	fontColor: string;
+	fontSize: string;
 }
 
 export interface IFrontMatter {
-  ogImage: IProps;
+	ogImage: IProps;
 }
 
 export interface IRepoProps extends IProps {
-  assetPath: string;
-  commitMsg: string;
-  componentUrl: string;
-  width: string | number;
-  height: string | number;
+	assetPath: string;
+	commitMsg: string;
+	componentUrl: string;
+	width: string | number;
+	height: string | number;
 }
 
 export interface IViewport {
-  width: string | number;
-  height: string | number;
+	width: string | number;
+	height: string | number;
 }

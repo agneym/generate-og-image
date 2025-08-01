@@ -7,13 +7,13 @@ const GITHUB_HEAD_REF = process.env["GITHUB_HEAD_REF"];
 const GITHUB_CONTEXT = process.env["GITHUB_CONTEXT"];
 
 if (!REPO_DIRECTORY) {
-  console.log("There is no GITHUB_WORKSPACE environment variable");
-  process.exit(1);
+	console.log("There is no GITHUB_WORKSPACE environment variable");
+	process.exit(1);
 }
 
 if (!GITHUB_REPOSITORY) {
-  console.log("Can't find github repository");
-  process.exit(1);
+	console.log("Can't find github repository");
+	process.exit(1);
 }
 
 const FORMATS = [".md", ".mdx"];
@@ -21,18 +21,18 @@ const FORMATS = [".md", ".mdx"];
 const USER_REPO = (GITHUB_REPOSITORY as string).split("/");
 
 const COMMITTER = {
-  name: "OG Bot",
-  email: "hello@agney.dev"
+	name: "OG Bot",
+	email: "hello@agney.dev",
 };
 
 export {
-  COMMITTER,
-  FORMATS,
-  GITHUB_TOKEN,
-  GITHUB_EVENT_NAME,
-  GITHUB_EVENT_PATH,
-  REPO_DIRECTORY,
-  USER_REPO,
-  GITHUB_HEAD_REF,
-  GITHUB_CONTEXT
+	COMMITTER,
+	FORMATS,
+	GITHUB_TOKEN,
+	GITHUB_EVENT_NAME,
+	GITHUB_EVENT_PATH,
+	REPO_DIRECTORY,
+	USER_REPO,
+	GITHUB_HEAD_REF,
+	GITHUB_CONTEXT,
 };

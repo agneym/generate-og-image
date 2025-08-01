@@ -11,47 +11,47 @@ import commentMarkdown from "./comment-markdown";
 import createComment from "./create-comment";
 
 if (!GITHUB_TOKEN) {
-  console.log("You must enable the GITHUB_TOKEN secret");
-  process.exit(1);
+	console.log("You must enable the GITHUB_TOKEN secret");
+	process.exit(1);
 }
 
 async function run() {
-  // Bail out if the event that executed the action wasn’t a pull_request
-  if (GITHUB_EVENT_NAME !== "pull_request") {
-    console.log("This action only runs for pushes to PRs");
-    process.exit(78);
-  }
+	// Bail out if the event that executed the action wasn’t a pull_request
+	if (GITHUB_EVENT_NAME !== "pull_request") {
+		console.log("This action only runs for pushes to PRs");
+		process.exit(78);
+	}
 
-  const repoProps = await getRepoProps();
-  const fileProperties = await findFile();
+	const repoProps = await getRepoProps();
+	const fileProperties = await findFile();
 
-  if (!fileProperties.length) {
-    warning("No compatible files found");
-  }
+	if (!fileProperties.length) {
+		warning("No compatible files found");
+	}
 
-  fileProperties.forEach(async property => {
-    const html = generateHtml({
-      ...repoProps,
-      ...property.attributes
-    });
+	fileProperties.forEach(async (property) => {
+		const html = generateHtml({
+			...repoProps,
+			...property.attributes,
+		});
 
-    const image = await generateImage(
-      {
-        width: repoProps.width,
-        height: repoProps.height
-      },
-      html
-    );
+		const image = await generateImage(
+			{
+				width: repoProps.width,
+				height: repoProps.height,
+			},
+			html,
+		);
 
-    commitFile(image, repoProps, property.filename);
+		commitFile(image, repoProps, property.filename);
 
-    if (repoProps.botComments != "no") {
-      const markdown = commentMarkdown(
-        `${repoProps.assetPath}${property.filename}`
-      );
-      await createComment(markdown);
-    }
-  });
+		if (repoProps.botComments != "no") {
+			const markdown = commentMarkdown(
+				`${repoProps.assetPath}${property.filename}`,
+			);
+			await createComment(markdown);
+		}
+	});
 }
 
 run();
