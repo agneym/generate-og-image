@@ -5,8 +5,8 @@
   "description": "JavaScript template action",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "build-release": "ncc build src/main.ts",
+    "build": "NODE_OPTIONS='--openssl-legacy-provider' tsc",
+    "build-release": "NODE_OPTIONS='--openssl-legacy-provider' ncc build src/main.ts",
     "format": "pretty-quick --pattern \"**/*.*(ts|tsx)\"",
     "test": "jest"
   },
@@ -23,7 +23,7 @@
   "dependencies": {
     "@actions/core": "^1.9.1",
     "@actions/github": "^1.1.0",
-    "@zeit/ncc": "^0.20.5",
+    "@vercel/ncc": "^0.38.1",
     "front-matter": "^3.0.2",
     "lodash": "^4.17.21",
     "marked": "^4.0.10",
@@ -33,7 +33,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "@types/marked": "^4.0.3",
-    "@types/node": "^12.0.4",
+    "@types/node": "^20.0.0",
     "@types/puppeteer": "^1.19.1",
     "husky": "^3.0.5",
     "jest": "^29.3.1",

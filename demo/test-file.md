@@ -8,4 +8,4 @@ ogImage:
   filename: this-file
 ---
 
-This is some text about some stuff that happened sometime ago
+This is some text about some stuff that happened sometime ago. Long time ago.
