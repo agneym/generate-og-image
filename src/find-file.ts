@@ -14,11 +14,11 @@ import getPrNumber from "./get-pr-number";
  * @param title
  */
 function getFileName(filename: string | undefined, title: string) {
-  if (filename) {
-    return filename;
-  } else {
-    return kebabCase(title);
-  }
+	if (filename) {
+		return filename;
+	} else {
+		return kebabCase(title);
+	}
 }
 
 /**
@@ -26,24 +26,24 @@ function getFileName(filename: string | undefined, title: string) {
  * @param files List of files in the PR
  */
 function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
-  return files.map(file => {
-    const filename = file.filename;
-    const repoDirectory = REPO_DIRECTORY as string;
-    const contents = readFileSync(`${repoDirectory}/${filename}`, {
-      encoding: "utf8"
-    });
-    const { attributes } = fm<IFrontMatter>(contents);
-    const reqdAttributes = Object.keys(attributes).length
-      ? { ...(attributes.ogImage || {}) }
-      : {};
-    return {
-      filename: getFileName(
-        reqdAttributes["fileName"],
-        reqdAttributes["title"]
-      ),
-      attributes: reqdAttributes
-    };
-  });
+	return files.map((file) => {
+		const filename = file.filename;
+		const repoDirectory = REPO_DIRECTORY as string;
+		const contents = readFileSync(`${repoDirectory}/${filename}`, {
+			encoding: "utf8",
+		});
+		const { attributes } = fm<IFrontMatter>(contents);
+		const reqdAttributes = Object.keys(attributes).length
+			? { ...(attributes.ogImage || {}) }
+			: {};
+		return {
+			filename: getFileName(
+				reqdAttributes["fileName"],
+				reqdAttributes["title"],
+			),
+			attributes: reqdAttributes,
+		};
+	});
 }
 
 /**
@@ -51,22 +51,23 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
  * @returns Front matter attributes as JSON
  */
 async function findFile() {
-  const [owner, repo] = USER_REPO;
-  const pullNumber = getPrNumber();
+	const [owner, repo] = USER_REPO;
+	const pullNumber = getPrNumber();
 
-  const { data: filesList } = await octokit.pulls.listFiles({
-    owner,
-    repo,
-    pull_number: pullNumber
-  });
-  const markdownFiles = filesList.filter(file => {
-    return FORMATS.some(format => file.filename.endsWith(format));
-  });
+	const { data: filesList } = await octokit.pulls.listFiles({
+		owner,
+		repo,
+		pull_number: pullNumber,
+	});
+	const markdownFiles = filesList.filter((file) => {
+		return FORMATS.some((format) => file.filename.endsWith(format));
+	});
 
-  const frontmatterAttributes = getAttributes(markdownFiles);
+	const frontmatterAttributes = getAttributes(markdownFiles);
 
-  return frontmatterAttributes.filter(
-    frontmatterAttribute => Object.keys(frontmatterAttribute.attributes).length
-  );
+	return frontmatterAttributes.filter(
+		(frontmatterAttribute) =>
+			Object.keys(frontmatterAttribute.attributes).length,
+	);
 }
 export default findFile;
