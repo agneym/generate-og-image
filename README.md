@@ -20,7 +20,7 @@ jobs:
     name: Generate OG Images
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Generate Image
         uses: BoyWithSilverWings/generate-og-image@1.0.3
         env:
@@ -107,7 +107,7 @@ Frontmatter level props on a document always takes precedence over Repository le
 5. **I need to format the title**
 
    The `title` prop supports markdown, feel _free_ to _use_ it.
-   
+
 6. **I don't want these preview image bot comments**
 
    the `botComments` repo prop should be set to `"no"`
