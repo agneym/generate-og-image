@@ -22,7 +22,7 @@
 	"license": "MIT",
 	"dependencies": {
 		"@actions/core": "^1.9.1",
-		"@actions/github": "^1.1.0",
+		"@actions/github": "^6.0.1",
 		"@vercel/ncc": "^0.38.1",
 		"es-toolkit": "^1.39.10",
 		"front-matter": "^3.0.2",
