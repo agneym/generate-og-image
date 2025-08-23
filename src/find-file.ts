@@ -10,16 +10,21 @@ import octokit from "./github-api";
 import type { IFileProps, IFrontMatter } from "./types";
 
 /**
- * Get name of the file if provided by the user or title in kebab case
- * @param filename
- * @param title
+ * Get the output filename for the generated OG image
+ * Uses custom filename from frontmatter if provided, otherwise generates from title
+ * @param customOutputFilename - Optional custom filename from ogImage.fileName in frontmatter
+ * @param title - Title from ogImage.title in frontmatter
  */
-function getFileName(filename: string | undefined, title: string) {
-	console.log({ filename, title });
-	if (filename) {
-		return filename;
-	} else {
+function getOutputImageFilename(
+	customOutputFilename: string | undefined,
+	title: string | undefined,
+) {
+	if (customOutputFilename) {
+		return customOutputFilename;
+	} else if (title) {
 		return kebabCase(title);
+	} else {
+		return "untitled";
 	}
 }
 
@@ -29,21 +34,23 @@ function getFileName(filename: string | undefined, title: string) {
  */
 function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 	return files.map((file) => {
-		const filename = file.filename;
+		const sourceFilePath = file.filename; // Path to the source markdown file
 		const repoDirectory = REPO_DIRECTORY as string;
-		const contents = readFileSync(`${repoDirectory}/${filename}`, {
+		const contents = readFileSync(`${repoDirectory}/${sourceFilePath}`, {
 			encoding: "utf8",
 		});
 		const { attributes } = fm<IFrontMatter>(contents);
-		const reqdAttributes = Object.keys(attributes).length
+		const ogImageConfig = Object.keys(attributes).length
 			? { ...(attributes.ogImage || {}) }
 			: {};
+
+		// Extract properties for output image filename generation
+		const customOutputFilename = ogImageConfig["fileName"];
+		const imageTitle = ogImageConfig["title"];
+
 		return {
-			filename: getFileName(
-				reqdAttributes["fileName"],
-				reqdAttributes["title"],
-			),
-			attributes: reqdAttributes,
+			filename: getOutputImageFilename(customOutputFilename, imageTitle),
+			attributes: ogImageConfig,
 		};
 	});
 }
