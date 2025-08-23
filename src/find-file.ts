@@ -45,8 +45,8 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 			: {};
 
 		// Extract properties for output image filename generation
-		const customOutputFilename = ogImageConfig.fileName;
-		const imageTitle = ogImageConfig.title;
+		const customOutputFilename = ogImageConfig["fileName"];
+		const imageTitle = ogImageConfig["title"];
 
 		return {
 			filename: getOutputImageFilename(customOutputFilename, imageTitle),

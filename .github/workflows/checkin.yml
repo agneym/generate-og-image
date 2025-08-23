@@ -11,7 +11,7 @@ jobs:
         run: npm ci
 
       - name: "npm run build"
-        run: npm run build
+        run: npm run build-release
 
       - name: "npm run test"
         run: npm run test

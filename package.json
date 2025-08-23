@@ -5,9 +5,9 @@
 	"description": "JavaScript template action",
 	"main": "dist/index.js",
 	"scripts": {
-		"build": "NODE_OPTIONS='--openssl-legacy-provider' tsc",
+		"typecheck": "NODE_OPTIONS='--openssl-legacy-provider' tsc --noEmit",
 		"build-release": "NODE_OPTIONS='--openssl-legacy-provider' ncc build src/main.ts",
-		"format": "pnpm exec biome format --write",
+		"format": "biome format --write",
 		"test": "jest"
 	},
 	"repository": {
