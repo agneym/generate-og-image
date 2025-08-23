@@ -15,6 +15,7 @@ import type { IFileProps, IFrontMatter } from "./types";
  * @param title
  */
 function getFileName(filename: string | undefined, title: string) {
+	console.log({ filename, title });
 	if (filename) {
 		return filename;
 	} else {
@@ -62,12 +63,10 @@ async function findFile(ignorePatterns: string[] = []) {
 		pull_number: pullNumber,
 	});
 
-	// Filter by markdown extensions
 	const markdownFiles = filesList.filter((file) => {
 		return FORMATS.some((format) => file.filename.endsWith(format));
 	});
 
-	// Apply ignore pattern filtering
 	const filteredFiles = filterFiles(
 		markdownFiles,
 		ignorePatterns,
