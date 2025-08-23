@@ -1,12 +1,12 @@
+import { readFileSync } from "node:fs";
+import type { PullsListFilesResponseItem } from "@octokit/rest";
+import { kebabCase } from "es-toolkit/string";
 import fm from "front-matter";
-import { readFileSync } from "fs";
-import { kebabCase } from "lodash";
-import { PullsListFilesResponseItem } from "@octokit/rest";
 
-import { USER_REPO, FORMATS, REPO_DIRECTORY } from "./constants";
-import octokit from "./github-api";
-import { IFrontMatter, IFileProps } from "./types";
+import { FORMATS, REPO_DIRECTORY, USER_REPO } from "./constants";
 import getPrNumber from "./get-pr-number";
+import octokit from "./github-api";
+import type { IFileProps, IFrontMatter } from "./types";
 
 /**
  * Get name of the file if provided by the user or title in kebab case
