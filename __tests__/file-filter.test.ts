@@ -2,7 +2,7 @@ import {
 	createFileFilter,
 	filterFiles,
 	shouldIgnoreFile,
-} from "../file-filter";
+} from "../src/file-filter";
 
 describe("File Filter", () => {
 	describe("createFileFilter", () => {
