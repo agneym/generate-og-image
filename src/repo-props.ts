@@ -13,6 +13,10 @@ async function getRepoProps() {
 	const width = getInput("width");
 	const height = getInput("height");
 	const botComments = getInput("botComments");
+	const ignorePatterns = getInput("ignorePatterns")
+		.split(",")
+		.map((pattern) => pattern.trim())
+		.filter((pattern) => pattern.length > 0);
 	return {
 		assetPath,
 		componentUrl,
@@ -23,6 +27,7 @@ async function getRepoProps() {
 		width,
 		height,
 		botComments,
+		ignorePatterns,
 	};
 }
 
