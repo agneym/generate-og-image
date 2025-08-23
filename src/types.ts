@@ -23,6 +23,8 @@ export interface IRepoProps extends IProps {
 	componentUrl: string;
 	width: string | number;
 	height: string | number;
+	botComments: string;
+	ignorePatterns: string[];
 }
 
 export interface IViewport {

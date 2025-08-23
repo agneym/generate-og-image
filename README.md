@@ -19,12 +19,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: BoyWithSilverWings/generate-og-image@2.0.0
+      - uses: BoyWithSilverWings/generate-og-image@3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_CONTEXT: ${{ toJson(github) }}
         with:
           path: src/images/post-images/
+          ignorePatterns: "/README.md,/CHANGELOG.md"  # Optional: customize ignored files
 ```
 
 Then add to your markdown frontmatter:
@@ -61,15 +62,16 @@ Works with PRs and `.md`/`.mdx` files.
 
 Configure in your workflow file:
 
-| Props        | Description               | Required |
-| ------------ | ------------------------- | :------: |
-| path         | Where to save images      |    ✅    |
-| commitMsg    | Commit message            |          |
-| background   | Default background        |          |
-| fontColor    | Default text color        |          |
-| fontSize     | Default font size         |          |
-| componentUrl | Custom web component      |          |
-| botComments  | Disable comments (`"no"`) |          |
+| Props        | Description               | Required |         Default         |
+| ------------ | ------------------------- | :------: | :---------------------: |
+| path         | Where to save images      |    ✅    |                         |
+| commitMsg    | Commit message            |          |                         |
+| background   | Default background        |          |                         |
+| fontColor    | Default text color        |          |                         |
+| fontSize     | Default font size         |          |                         |
+| componentUrl | Custom web component      |          |                         |
+| botComments  | Disable comments (`"no"`) |          |                         |
+| ignorePatterns | Files to ignore (globs) |          | `/README.md` |
 
 Frontmatter overrides repository settings.
 
@@ -97,6 +99,50 @@ imageUrl: "🚀"
 
 ```yaml
 botComments: "no"
+```
+
+## File Filtering
+
+By default, the action ignores `/README.md` to prevent generating OG images for repository documentation. You can customize which files to ignore using glob patterns.
+
+### Basic Usage
+
+```yaml
+- uses: BoyWithSilverWings/generate-og-image@3.0.0
+  with:
+    ignorePatterns: "/README.md,/CHANGELOG.md"
+```
+
+### Pattern Examples
+
+| Pattern | Description | Example Matches |
+|---------|-------------|-----------------|
+| `/README.md` | Exact file at root | `/README.md` |
+| `**/README.md` | README.md in any directory | `/docs/README.md`, `/src/README.md` |
+| `**/*.config.md` | All .config.md files | `/webpack.config.md`, `/jest.config.md` |
+| `docs/**` | All files in docs directory | `/docs/api.md`, `/docs/guides/setup.md` |
+| `{README,CHANGELOG}.md` | Multiple specific files | `/README.md`, `/CHANGELOG.md` |
+
+### Common Use Cases
+
+**Ignore documentation files:**
+```yaml
+ignorePatterns: "/README.md,/CHANGELOG.md,/LICENSE.md"
+```
+
+**Ignore entire directories:**
+```yaml
+ignorePatterns: "docs/**,examples/**"
+```
+
+**Ignore AI assistant files:**
+```yaml
+ignorePatterns: "/CLAUDE.md,/GPT.md,**/*.prompt.md"
+```
+
+**Process all files (disable filtering):**
+```yaml
+ignorePatterns: ""
 ```
 
 ## Customization

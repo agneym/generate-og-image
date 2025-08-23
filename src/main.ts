@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 import { warning } from "@actions/core";
-
-import { GITHUB_TOKEN, GITHUB_EVENT_NAME } from "./constants";
-import generateImage from "./generate-image";
-import commitFile from "./commit-file";
-import generateHtml from "./generate-html";
-import findFile from "./find-file";
-import getRepoProps from "./repo-props";
 import commentMarkdown from "./comment-markdown";
+import commitFile from "./commit-file";
+import { GITHUB_EVENT_NAME, GITHUB_TOKEN } from "./constants";
 import createComment from "./create-comment";
+import findFile from "./find-file";
+import generateHtml from "./generate-html";
+import generateImage from "./generate-image";
+import getRepoProps from "./repo-props";
 
 if (!GITHUB_TOKEN) {
 	console.log("You must enable the GITHUB_TOKEN secret");
@@ -23,7 +22,7 @@ async function run() {
 	}
 
 	const repoProps = await getRepoProps();
-	const fileProperties = await findFile();
+	const fileProperties = await findFile(repoProps.ignorePatterns);
 
 	if (!fileProperties.length) {
 		warning("No compatible files found");
@@ -45,7 +44,7 @@ async function run() {
 
 		commitFile(image, repoProps, property.filename);
 
-		if (repoProps.botComments != "no") {
+		if (repoProps.botComments !== "no") {
 			const markdown = commentMarkdown(
 				`${repoProps.assetPath}${property.filename}`,
 			);

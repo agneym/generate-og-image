@@ -32,6 +32,9 @@ inputs:
   botComments:
     description: "Whether a comment with a preview image should be posted"
     default: "yes"
+  ignorePatterns:
+    description: "Comma-separated glob patterns for files to ignore"
+    default: "/README.md"
 runs:
   using: "docker"
   image: "Dockerfile"
