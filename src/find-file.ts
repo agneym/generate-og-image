@@ -4,6 +4,7 @@ import { kebabCase } from "es-toolkit/string";
 import fm from "front-matter";
 
 import { FORMATS, REPO_DIRECTORY, USER_REPO } from "./constants";
+import { filterFiles } from "./file-filter";
 import getPrNumber from "./get-pr-number";
 import octokit from "./github-api";
 import type { IFileProps, IFrontMatter } from "./types";
@@ -48,9 +49,10 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 
 /**
  * Find files with md and mdx extensions and extract information
+ * @param ignorePatterns Array of glob patterns for files to ignore
  * @returns Front matter attributes as JSON
  */
-async function findFile() {
+async function findFile(ignorePatterns: string[] = []) {
 	const [owner, repo] = USER_REPO;
 	const pullNumber = getPrNumber();
 
@@ -59,11 +61,20 @@ async function findFile() {
 		repo,
 		pull_number: pullNumber,
 	});
+
+	// Filter by markdown extensions
 	const markdownFiles = filesList.filter((file) => {
 		return FORMATS.some((format) => file.filename.endsWith(format));
 	});
 
-	const frontmatterAttributes = getAttributes(markdownFiles);
+	// Apply ignore pattern filtering
+	const filteredFiles = filterFiles(
+		markdownFiles,
+		ignorePatterns,
+		(file) => file.filename,
+	);
+
+	const frontmatterAttributes = getAttributes(filteredFiles);
 
 	return frontmatterAttributes.filter(
 		(frontmatterAttribute) =>
