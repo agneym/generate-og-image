@@ -15,17 +15,49 @@ async function commitFile(
 	filename: string,
 ) {
 	const [owner, repo] = USER_REPO;
+	const filePath = `${repoProps.assetPath || ""}${filename}.jpg`;
 
 	try {
-		await octokit.repos.createOrUpdateFile({
+		// First, try to get the existing file to get its SHA
+		let sha: string | undefined;
+		try {
+			const { data: existingFile } = await octokit.repos.getContents({
+				owner,
+				repo,
+				path: filePath,
+				ref: GITHUB_HEAD_REF,
+			});
+
+			// Handle the case where getContents returns a file object
+			if ("sha" in existingFile && typeof existingFile.sha === "string") {
+				sha = existingFile.sha;
+			}
+		} catch (getError: any) {
+			// File doesn't exist, which is fine for creating new files
+			if (getError.status !== 404) {
+				console.warn(
+					`Warning: Could not get existing file SHA: ${getError.message}`,
+				);
+			}
+		}
+
+		// Create or update the file
+		const commitParams: any = {
 			owner,
 			repo,
-			path: `${repoProps.assetPath || ""}${filename}.jpg`,
+			path: filePath,
 			branch: GITHUB_HEAD_REF,
 			message: repoProps.commitMsg || "",
 			content,
 			...COMMITTER,
-		});
+		};
+
+		// Include SHA if the file exists
+		if (sha) {
+			commitParams.sha = sha;
+		}
+
+		await octokit.repos.createOrUpdateFile(commitParams);
 	} catch (err) {
 		error(`Adding a commit to branch ${GITHUB_HEAD_REF} failed with ${err}`);
 	}
