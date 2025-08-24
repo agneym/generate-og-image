@@ -1,0 +1,26 @@
+# Bun Configuration File
+# https://bun.sh/docs/bundler
+
+[build]
+# Target environment - Node.js for GitHub Actions compatibility
+target = "node"
+# Enable minification for smaller bundles
+minify = true
+# Disable code splitting for single executable
+splitting = false
+# Use ESM format for modern JavaScript
+format = "esm"
+
+[install]
+# Enable install cache for faster builds
+cache = true
+# Use exact versions from lockfile
+exact = true
+# Skip optional dependencies for smaller Docker images
+optional = false
+
+[test]
+# Enable test coverage reporting
+coverage = true
+# Timeout for tests (in milliseconds)
+timeout = 30000

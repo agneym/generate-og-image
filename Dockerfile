@@ -1,5 +1,5 @@
- 
-FROM node:24
+
+FROM oven/bun:1-debian
 
 # Install Google Chrome
 RUN apt update && apt install -y \
@@ -32,15 +32,15 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 RUN mkdir -p /usr/local/src/generate-og-image
 WORKDIR /usr/local/src/generate-og-image
 
-COPY package.json package-lock.json /usr/local/src/generate-og-image/
-RUN npm ci
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
 # copy in src
-COPY tsconfig.json /usr/local/src/generate-og-image/
+COPY tsconfig.json bunfig.toml /usr/local/src/generate-og-image/
 COPY src/ /usr/local/src/generate-og-image/src/
 COPY __tests__/ /usr/local/src/generate-og-image/__tests__/
 
-RUN NODE_OPTIONS="--openssl-legacy-provider" npm run build-release
+RUN bun run build-release
 
 RUN chmod +x /usr/local/src/generate-og-image/dist/index.js
 

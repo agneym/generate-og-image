@@ -77,14 +77,13 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 		const { attributes } = fm<IFrontMatter>(contents);
 		const ogImageConfig = Object.keys(attributes).length
 			? { ...(attributes.ogImage || {}) }
-			: {};
-
-		// Extract properties for output image filename generation
-		const customOutputFilename = ogImageConfig["fileName"];
-		const imageTitle = ogImageConfig["title"];
+			: ({} as Record<string, any>);
 
 		return {
-			filename: getOutputImageFilename(customOutputFilename, imageTitle),
+			filename: getOutputImageFilename(
+				ogImageConfig.fileName,
+				ogImageConfig.title,
+			),
 			attributes: ogImageConfig,
 		};
 	});

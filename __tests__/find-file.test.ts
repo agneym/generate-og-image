@@ -1,13 +1,23 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from "bun:test";
 import type { PullsListFilesResponseItem } from "@octokit/rest";
 
-// Mock environment variables before importing modules that depend on them
-process.env.GITHUB_WORKSPACE = "/test/workspace";
-process.env.GITHUB_REPOSITORY = "test/repo";
+// Import only the functions we need for testing without triggering other imports
+let filterNonDeletedFiles: any;
+let safeFilterNonDeletedFiles: any;
 
-import {
-	filterNonDeletedFiles,
-	safeFilterNonDeletedFiles,
-} from "../src/find-file";
+// Set up environment and import functions before tests
+beforeEach(async () => {
+	// Set environment variables before any imports
+	process.env.GITHUB_WORKSPACE = "/test/workspace";
+	process.env.GITHUB_REPOSITORY = "test/repo";
+	process.env.GITHUB_TOKEN = "test-token";
+	process.env.GITHUB_CONTEXT = '{"event":{"number":123}}';
+
+	// Dynamically import the functions to avoid module loading issues
+	const module = await import("../src/find-file");
+	filterNonDeletedFiles = module.filterNonDeletedFiles;
+	safeFilterNonDeletedFiles = module.safeFilterNonDeletedFiles;
+});
 
 describe("File Status Filtering", () => {
 	describe("filterNonDeletedFiles", () => {
@@ -64,8 +74,8 @@ describe("File Status Filtering", () => {
 	});
 
 	describe("safeFilterNonDeletedFiles", () => {
-		let warnSpy: jest.SpyInstance;
-		let logSpy: jest.SpyInstance;
+		let warnSpy: any;
+		let logSpy: any;
 
 		beforeEach(() => {
 			warnSpy = jest.spyOn(console, "warn").mockImplementation(() => {});

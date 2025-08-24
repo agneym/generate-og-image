@@ -18,7 +18,7 @@ if (!GITHUB_REPOSITORY) {
 
 const FORMATS = [".md", ".mdx"];
 
-const USER_REPO = (GITHUB_REPOSITORY as string).split("/");
+const USER_REPO = (GITHUB_REPOSITORY as string).split("/") as [string, string];
 
 const COMMITTER = {
 	name: "OG Bot",

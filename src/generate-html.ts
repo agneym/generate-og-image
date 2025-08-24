@@ -1,7 +1,7 @@
 import { marked } from "marked";
 import twemoji from "twemoji";
 
-import { IRepoProps } from "./types";
+import type { IRepoProps } from "./types";
 
 function createVariables(name: string, value?: string) {
 	if (value) {
@@ -53,7 +53,7 @@ function generateHtml(prop: Partial<IRepoProps>) {
       <script type="module" rel="preload" src="${prop.componentUrl}"></script>
     </head>
     <body>
-      <og-image-element subtitle="${prop.subtitle || ""}">
+      <og-image-element subtitle="${prop.subtitle ?? ""}">
         ${getImageUrl(prop.imageUrl)}
         <div slot="title">${getMarked(prop.title)}</div>
       </og-image-element>
