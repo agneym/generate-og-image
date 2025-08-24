@@ -1,3 +1,4 @@
+import { describe, expect, it } from "bun:test";
 import generateHtml from "../src/generate-html";
 
 describe("Generate HTML", () => {

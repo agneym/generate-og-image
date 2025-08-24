@@ -42,11 +42,11 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 		const { attributes } = fm<IFrontMatter>(contents);
 		const ogImageConfig = Object.keys(attributes).length
 			? { ...(attributes.ogImage || {}) }
-			: {};
+			: ({} as Record<string, any>);
 
 		// Extract properties for output image filename generation
-		const customOutputFilename = ogImageConfig["fileName"];
-		const imageTitle = ogImageConfig["title"];
+		const customOutputFilename = ogImageConfig.fileName as string | undefined;
+		const imageTitle = ogImageConfig.title as string | undefined;
 
 		return {
 			filename: getOutputImageFilename(customOutputFilename, imageTitle),

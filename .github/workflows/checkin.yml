@@ -7,19 +7,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: "npm ci"
-        run: npm ci
+      - name: "Setup Bun"
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
 
-      - name: "npm run build"
-        run: npm run build-release
+      - name: "Install dependencies"
+        run: bun install --frozen-lockfile
 
-      - name: "npm run test"
-        run: npm run test
+      - name: "Type check"
+        run: bun run typecheck
+
+      - name: "Build release"
+        run: bun run build-release
+
+      - name: "Run tests"
+        run: bun test
 
       - name: "check for uncommitted changes"
         # Ensure no changes, but ignore node_modules dir since dev/fresh ci deps installed.
         run: |
-          git diff --exit-code --stat -- . ':!node_modules' \
-          || (echo "##[error] found changed files after build. please 'npm run build && npm run format'" \
+          git diff --exit-code --stat -- . ':!node_modules' ':!bun.lockb' \
+          || (echo "##[error] found changed files after build. please 'bun run build && bun run format'" \
                    "and check in all changes" \
               && exit 1)

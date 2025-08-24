@@ -1,8 +1,7 @@
 import { error } from "@actions/core";
-
+import { COMMITTER, GITHUB_HEAD_REF, USER_REPO } from "./constants";
 import octokit from "./github-api";
-import { USER_REPO, COMMITTER, GITHUB_HEAD_REF } from "./constants";
-import { IRepoProps } from "./types";
+import type { IRepoProps } from "./types";
 
 /**
  * Commit the image with reported filename and commit messsage

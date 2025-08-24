@@ -1,5 +1,5 @@
 import puppeteer from "puppeteer-core";
-import { IViewport } from "./types";
+import type { IViewport } from "./types";
 
 async function generateImage(viewport: IViewport, html: string) {
 	const browser = await puppeteer.launch({
