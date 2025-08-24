@@ -79,14 +79,11 @@ function getAttributes(files: PullsListFilesResponseItem[]): IFileProps[] {
 			? { ...(attributes.ogImage || {}) }
 			: ({} as Record<string, any>);
 
-		// Extract properties for output image filename generation
-		// Support both fileName (camelCase) and filename (lowercase) for compatibility
-		const customOutputFilename = (ogImageConfig.fileName ||
-			ogImageConfig.filename) as string | undefined;
-		const imageTitle = ogImageConfig.title as string | undefined;
-
 		return {
-			filename: getOutputImageFilename(customOutputFilename, imageTitle),
+			filename: getOutputImageFilename(
+				ogImageConfig.fileName,
+				ogImageConfig.title,
+			),
 			attributes: ogImageConfig,
 		};
 	});
