@@ -4,7 +4,7 @@ description: Nothing to see here
 ogImage:
   title: Generating *open graph* images with Github Actions
   subtitle: Images for your blog
-  imageUrl: "🥳"
+  imageUrl: "🚧"
   filename: this-file
 ---
 
