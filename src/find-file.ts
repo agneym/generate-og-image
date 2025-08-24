@@ -10,6 +10,41 @@ import octokit from "./github-api";
 import type { IFileProps, IFrontMatter } from "./types";
 
 /**
+ * Filter out deleted files from GitHub PR file list
+ * @param files Array of files from GitHub API
+ * @returns Array of non-deleted files
+ */
+export function filterNonDeletedFiles(
+	files: PullsListFilesResponseItem[],
+): PullsListFilesResponseItem[] {
+	return files.filter((file) => file.status !== "removed");
+}
+
+/**
+ * Safe version with error handling and logging
+ * @param files Array of files from GitHub API
+ * @returns Array of non-deleted files with logging
+ */
+export function safeFilterNonDeletedFiles(
+	files: PullsListFilesResponseItem[],
+): PullsListFilesResponseItem[] {
+	const validFiles = files.filter((file) => {
+		if (!file.status) {
+			console.warn(`File ${file.filename} missing status information`);
+			return true; // Conservative approach - include if uncertain
+		}
+		return file.status !== "removed";
+	});
+
+	const deletedCount = files.length - validFiles.length;
+	if (deletedCount > 0) {
+		console.log(`Filtered out ${deletedCount} deleted files`);
+	}
+
+	return validFiles;
+}
+
+/**
  * Get the output filename for the generated OG image
  * Uses custom filename from frontmatter if provided, otherwise generates from title
  * @param customOutputFilename - Optional custom filename from ogImage.fileName in frontmatter
@@ -70,7 +105,9 @@ async function findFile(ignorePatterns: string[] = []) {
 		pull_number: pullNumber,
 	});
 
-	const markdownFiles = filesList.filter((file) => {
+	const nonDeletedFiles = safeFilterNonDeletedFiles(filesList);
+
+	const markdownFiles = nonDeletedFiles.filter((file) => {
 		return FORMATS.some((format) => file.filename.endsWith(format));
 	});
 
