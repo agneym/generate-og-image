@@ -93,3 +93,7 @@ typings/
 # Build
 lib
 dist
+
+# IDE files
+.idea
+.qoder
