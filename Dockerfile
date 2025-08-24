@@ -1,4 +1,4 @@
- 
+
 FROM oven/bun:1-debian
 
 # Install Google Chrome
@@ -32,7 +32,7 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 RUN mkdir -p /usr/local/src/generate-og-image
 WORKDIR /usr/local/src/generate-og-image
 
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # copy in src
